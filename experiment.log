@@ -66,3 +66,21 @@
 2026-09-01 15:52:08 | INFO     | Selected action: REQUEST_EVIDENCE
 2026-09-01 15:52:08 | INFO     | request_cost introduced: 10 experimental units (Stage 3 parameter)
 2026-09-01 15:52:08 | INFO     | Experiment finished. Log saved to: d:\Ayush Singh course\Weekly deliverables\Week 1\experiment.log
+2026-09-03 17:16:30 | INFO     | =======================================================
+2026-09-03 17:16:30 | INFO     | Experiment started: Case 1 - Loan Agent
+2026-09-03 17:16:30 | INFO     | =======================================================
+2026-09-03 17:16:30 | DEBUG    | bayesian_update() called
+2026-09-03 17:16:30 | DEBUG    |   Priors      : {'legitimate': 0.5, 'concerning': 0.5}
+2026-09-03 17:16:30 | DEBUG    |   Likelihoods : {'legitimate': 0.2, 'concerning': 0.75}
+2026-09-03 17:16:30 | DEBUG    |   Joint probs : {'legitimate': 0.1, 'concerning': 0.375}
+2026-09-03 17:16:30 | DEBUG    |   P(evidence) normalising constant = 0.475000
+2026-09-03 17:16:30 | DEBUG    |   Posteriors  : {'legitimate': 0.210526, 'concerning': 0.789474}
+2026-09-03 17:16:30 | INFO     | Bayesian update complete -> P(legitimate)=0.2105, P(concerning)=0.7895
+2026-09-03 17:16:30 | DEBUG    | action_policy() called
+2026-09-03 17:16:30 | DEBUG    |   P(concerning)=0.7895  useful_evidence_available=True
+2026-09-03 17:16:30 | INFO     | Policy Rule 2 matched -> action: REQUEST_EVIDENCE  (P(concerning)=0.7895, evidence available)
+2026-09-03 17:16:30 | DEBUG    | Inputs used  -> priors={'legitimate': 0.5, 'concerning': 0.5}, likelihoods={'legitimate': 0.2, 'concerning': 0.75}, evidence_available=True
+2026-09-03 17:16:30 | DEBUG    | request_cost = 10 (SYNTHETIC experimental unit)
+2026-09-03 17:16:30 | INFO     | Selected action: REQUEST_EVIDENCE
+2026-09-03 17:16:30 | INFO     | request_cost introduced: 10 experimental units (Stage 3 parameter)
+2026-09-03 17:16:30 | INFO     | Experiment finished. Log saved to: d:\Ayush Singh course\Weekly deliverables\Week 1\experiment.log
