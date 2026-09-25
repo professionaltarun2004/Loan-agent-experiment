@@ -7,7 +7,12 @@ from .policies import baseline_policy, policy_1_information_seeking, policy_2_co
 
 def evaluate_case(case: dict) -> dict:
     """Return agent decisions/costs with evaluation-only truth kept separate."""
-    posterior = bayesian_update(case["priors"], case["likelihoods"])
+    if "evidence_likelihood_sequence" in case:
+        posterior = case["priors"]
+        for likelihoods in case["evidence_likelihood_sequence"]:
+            posterior = bayesian_update(posterior, likelihoods)
+    else:
+        posterior = bayesian_update(case["priors"], case["likelihoods"])
     available = case["useful_evidence_available"]
     request_cost = (
         expected_cost_request_evidence(posterior, case) if available else None
@@ -33,7 +38,7 @@ def evaluate_case(case: dict) -> dict:
             human_review_cost=case["human_review_cost"],
         ),
     }
-    return {
+    result = {
         "case_id": case["case_id"],
         "observed_evidence": case["observed_evidence"],
         "posterior": posterior,
@@ -46,6 +51,10 @@ def evaluate_case(case: dict) -> dict:
         # Kept separate from the inputs passed into the policies.
         "evaluation_only": {"hidden_ground_truth": case["hidden_ground_truth"]},
     }
+    if "stress" in case:
+        result["stress"] = case["stress"]
+        result["expected_behavior"] = case["expected_behavior"]
+    return result
 
 
 def evaluate_cases(cases: list[dict]) -> list[dict]:
@@ -73,6 +82,15 @@ def summarize_policy_performance(results: list[dict]) -> dict:
             "total_expected_cost": total_expected_cost,
             "average_expected_cost": total_expected_cost / len(results) if results else 0,
             "automated_proceed_count": automated_count,
+            "proceed_count": sum(
+                result["actions"][policy_name] == "PROCEED" for result in results
+            ),
+            "request_evidence_count": sum(
+                result["actions"][policy_name] == "REQUEST_EVIDENCE" for result in results
+            ),
+            "human_review_count": sum(
+                result["actions"][policy_name] == "HUMAN_REVIEW" for result in results
+            ),
             "wrong_automated_proceed_count": wrong_count,
             "wrong_proceed_rate": wrong_count / automated_count if automated_count else 0,
             "wrong_proceed_cases": [result["case_id"] for result in wrong_proceed_cases],
@@ -133,3 +151,9 @@ def validate_stage9_matrix(controlled_results: list[dict], matrix_cases: list[di
         second = {key: value for key, value in case_by_id[second_id].items()
                   if key not in ("case_id", changed_field)}
         assert first == second
+
+    assert by_id["M04_AMBIGUOUS_CHEAP_USEFUL_EVIDENCE"]["actions"]["Policy 2"] == "REQUEST_EVIDENCE"
+    assert by_id["M05_AMBIGUOUS_EXPENSIVE_EVIDENCE"]["actions"]["Policy 2"] == "PROCEED"
+    assert by_id["M15A_LOW_REVIEW_COST"]["actions"]["Policy 2"] == "HUMAN_REVIEW"
+    assert by_id["M15B_MODERATE_REVIEW_COST"]["actions"]["Policy 2"] == "REQUEST_EVIDENCE"
+    assert by_id["M15C_HIGH_REVIEW_COST"]["actions"]["Policy 2"] == "PROCEED"
