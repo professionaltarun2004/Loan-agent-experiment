@@ -516,3 +516,624 @@
 2026-09-26 00:11:38 | INFO     | Stage 5A synthetic decision costs (experimental units): correct PROCEED=0, wrong PROCEED=100, REQUEST_EVIDENCE=10, HUMAN_REVIEW=30
 2026-09-26 00:11:38 | INFO     | Expected cost of PROCEEDING NOW = 78.9474 synthetic experimental units
 2026-09-26 00:11:38 | INFO     | Experiment finished. Log saved to: D:\Ayush Singh course\Weekly deliverables\Week 1\experiment.log
+2026-09-26 00:12:42 | INFO     | =======================================================
+2026-09-26 00:12:42 | INFO     | Experiment started: Case 1 - Loan Agent
+2026-09-26 00:12:42 | INFO     | =======================================================
+2026-09-26 00:12:42 | DEBUG    | bayesian_update() called
+2026-09-26 00:12:42 | DEBUG    |   Priors      : {'legitimate': 0.5, 'concerning': 0.5}
+2026-09-26 00:12:42 | DEBUG    |   Likelihoods : {'legitimate': 0.2, 'concerning': 0.75}
+2026-09-26 00:12:42 | DEBUG    |   Joint probs : {'legitimate': 0.1, 'concerning': 0.375}
+2026-09-26 00:12:42 | DEBUG    |   P(evidence) normalising constant = 0.475000
+2026-09-26 00:12:42 | DEBUG    |   Posteriors  : {'legitimate': 0.210526, 'concerning': 0.789474}
+2026-09-26 00:12:42 | INFO     | Bayesian update complete -> P(legitimate)=0.2105, P(concerning)=0.7895
+2026-09-26 00:12:42 | INFO     | Stage 5D - synthetic outcome probabilities
+2026-09-26 00:12:42 | INFO     |   SUPPORTING_LEGITIMATE = 20.00% (SYNTHETIC)
+2026-09-26 00:12:42 | INFO     |   SUPPORTING_CONCERNING = 60.00% (SYNTHETIC)
+2026-09-26 00:12:42 | INFO     |   UNCLEAR_CONFLICTING = 20.00% (SYNTHETIC)
+2026-09-26 00:12:42 | INFO     |   Total = 100.00%
+2026-09-26 00:12:42 | INFO     |   These are synthetic assumptions for the experiment, not real banking statistics.
+2026-09-26 00:12:42 | INFO     | Stage 5C - possible evidence outcomes (synthetic categories)
+2026-09-26 00:12:42 | INFO     |   Outcome 1 - SUPPORTING_LEGITIMATE
+2026-09-26 00:12:42 | INFO     |     Description: The historical statements show a pattern that is more compatible with the legitimate state.
+2026-09-26 00:12:42 | INFO     |     Probability: NOT DEFINED YET
+2026-09-26 00:12:42 | INFO     |   Outcome 2 - SUPPORTING_CONCERNING
+2026-09-26 00:12:42 | INFO     |     Description: The historical statements show a pattern that is more compatible with the concerning state.
+2026-09-26 00:12:42 | INFO     |     Probability: NOT DEFINED YET
+2026-09-26 00:12:42 | INFO     |   Outcome 3 - UNCLEAR_CONFLICTING
+2026-09-26 00:12:42 | INFO     |     Description: The additional evidence is ambiguous, contradictory, incomplete, or otherwise does not meaningfully resolve the uncertainty.
+2026-09-26 00:12:42 | INFO     |     Probability: NOT DEFINED YET
+2026-09-26 00:12:42 | INFO     | Stage 5B - expected cost of acting now (synthetic experimental units)
+2026-09-26 00:12:42 | INFO     |   P(legitimate) = 0.210526; P(concerning) = 0.789474
+2026-09-26 00:12:42 | INFO     |   Cost if legitimate and PROCEED = 0; cost if concerning and PROCEED = 100
+2026-09-26 00:12:42 | INFO     |   Expected cost of PROCEEDING NOW = 78.9474
+2026-09-26 00:12:42 | DEBUG    | action_policy() called
+2026-09-26 00:12:42 | DEBUG    |   P(concerning)=0.7895  useful_evidence_available=True
+2026-09-26 00:12:42 | INFO     | Policy Rule 2 matched -> action: REQUEST_EVIDENCE  (P(concerning)=0.7895, evidence available)
+2026-09-26 00:12:42 | DEBUG    | bayesian_update() called
+2026-09-26 00:12:42 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:12:42 | DEBUG    |   Likelihoods : {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:12:42 | DEBUG    |   Joint probs : {'legitimate': 0.126316, 'concerning': 0.631579}
+2026-09-26 00:12:42 | DEBUG    |   P(evidence) normalising constant = 0.757895
+2026-09-26 00:12:42 | DEBUG    |   Posteriors  : {'legitimate': 0.166667, 'concerning': 0.833333}
+2026-09-26 00:12:42 | INFO     | Bayesian update complete -> P(legitimate)=0.1667, P(concerning)=0.8333
+2026-09-26 00:12:42 | INFO     | Stage 4 - second Bayesian update after requesting evidence
+2026-09-26 00:12:42 | INFO     | Previous posterior / new prior: {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:12:42 | INFO     | New evidence: Previous 3-4 months show the same unusual transaction pattern consistently.
+2026-09-26 00:12:42 | INFO     | New evidence likelihoods (SYNTHETIC): {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:12:42 | INFO     | Second posterior: {'legitimate': 0.16666666666666663, 'concerning': 0.8333333333333333}
+2026-09-26 00:12:42 | INFO     | Updated P(legitimate | all evidence) = 0.1667
+2026-09-26 00:12:42 | INFO     | Updated P(concerning | all evidence) = 0.8333
+2026-09-26 00:12:42 | DEBUG    | Inputs used  -> priors={'legitimate': 0.5, 'concerning': 0.5}, likelihoods={'legitimate': 0.2, 'concerning': 0.75}, evidence_available=True
+2026-09-26 00:12:42 | DEBUG    | request_cost = 10 (SYNTHETIC experimental unit)
+2026-09-26 00:12:42 | INFO     | Selected action: REQUEST_EVIDENCE
+2026-09-26 00:12:42 | INFO     | request_cost introduced: 10 experimental units (Stage 3 parameter)
+2026-09-26 00:12:42 | INFO     | Stage 5A synthetic decision costs (experimental units): correct PROCEED=0, wrong PROCEED=100, REQUEST_EVIDENCE=10, HUMAN_REVIEW=30
+2026-09-26 00:12:42 | INFO     | Expected cost of PROCEEDING NOW = 78.9474 synthetic experimental units
+2026-09-26 00:12:42 | INFO     | Experiment finished. Log saved to: d:\Ayush Singh course\Weekly deliverables\Week 1\experiment.log
+2026-09-26 00:14:51 | INFO     | =======================================================
+2026-09-26 00:14:51 | INFO     | Experiment started: Case 1 - Loan Agent
+2026-09-26 00:14:51 | INFO     | =======================================================
+2026-09-26 00:14:51 | DEBUG    | bayesian_update() called
+2026-09-26 00:14:51 | DEBUG    |   Priors      : {'legitimate': 0.5, 'concerning': 0.5}
+2026-09-26 00:14:51 | DEBUG    |   Likelihoods : {'legitimate': 0.2, 'concerning': 0.75}
+2026-09-26 00:14:51 | DEBUG    |   Joint probs : {'legitimate': 0.1, 'concerning': 0.375}
+2026-09-26 00:14:51 | DEBUG    |   P(evidence) normalising constant = 0.475000
+2026-09-26 00:14:51 | DEBUG    |   Posteriors  : {'legitimate': 0.210526, 'concerning': 0.789474}
+2026-09-26 00:14:51 | INFO     | Bayesian update complete -> P(legitimate)=0.2105, P(concerning)=0.7895
+2026-09-26 00:14:51 | INFO     | Stage 5D - synthetic outcome probabilities
+2026-09-26 00:14:51 | INFO     |   SUPPORTING_LEGITIMATE = 20.00% (SYNTHETIC)
+2026-09-26 00:14:51 | INFO     |   SUPPORTING_CONCERNING = 60.00% (SYNTHETIC)
+2026-09-26 00:14:51 | INFO     |   UNCLEAR_CONFLICTING = 20.00% (SYNTHETIC)
+2026-09-26 00:14:51 | INFO     |   Total = 100.00%
+2026-09-26 00:14:51 | INFO     |   These are synthetic assumptions for the experiment, not real banking statistics.
+2026-09-26 00:14:51 | INFO     | Stage 5C - possible evidence outcomes (synthetic categories)
+2026-09-26 00:14:51 | INFO     |   Outcome 1 - SUPPORTING_LEGITIMATE
+2026-09-26 00:14:51 | INFO     |     Description: The historical statements show a pattern that is more compatible with the legitimate state.
+2026-09-26 00:14:51 | INFO     |     Probability: NOT DEFINED YET
+2026-09-26 00:14:51 | INFO     |   Outcome 2 - SUPPORTING_CONCERNING
+2026-09-26 00:14:51 | INFO     |     Description: The historical statements show a pattern that is more compatible with the concerning state.
+2026-09-26 00:14:51 | INFO     |     Probability: NOT DEFINED YET
+2026-09-26 00:14:51 | INFO     |   Outcome 3 - UNCLEAR_CONFLICTING
+2026-09-26 00:14:51 | INFO     |     Description: The additional evidence is ambiguous, contradictory, incomplete, or otherwise does not meaningfully resolve the uncertainty.
+2026-09-26 00:14:51 | INFO     |     Probability: NOT DEFINED YET
+2026-09-26 00:14:51 | INFO     | Stage 5B - expected cost of acting now (synthetic experimental units)
+2026-09-26 00:14:51 | INFO     |   P(legitimate) = 0.210526; P(concerning) = 0.789474
+2026-09-26 00:14:51 | INFO     |   Cost if legitimate and PROCEED = 0; cost if concerning and PROCEED = 100
+2026-09-26 00:14:51 | INFO     |   Expected cost of PROCEEDING NOW = 78.9474
+2026-09-26 00:14:51 | DEBUG    | action_policy() called
+2026-09-26 00:14:51 | DEBUG    |   P(concerning)=0.7895  useful_evidence_available=True
+2026-09-26 00:14:51 | INFO     | Policy Rule 2 matched -> action: REQUEST_EVIDENCE  (P(concerning)=0.7895, evidence available)
+2026-09-26 00:14:51 | DEBUG    | bayesian_update() called
+2026-09-26 00:14:51 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:14:51 | DEBUG    |   Likelihoods : {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:14:51 | DEBUG    |   Joint probs : {'legitimate': 0.126316, 'concerning': 0.631579}
+2026-09-26 00:14:51 | DEBUG    |   P(evidence) normalising constant = 0.757895
+2026-09-26 00:14:51 | DEBUG    |   Posteriors  : {'legitimate': 0.166667, 'concerning': 0.833333}
+2026-09-26 00:14:51 | INFO     | Bayesian update complete -> P(legitimate)=0.1667, P(concerning)=0.8333
+2026-09-26 00:14:51 | DEBUG    | bayesian_update() called
+2026-09-26 00:14:51 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:14:51 | DEBUG    |   Likelihoods : {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:14:51 | DEBUG    |   Joint probs : {'legitimate': 0.126316, 'concerning': 0.631579}
+2026-09-26 00:14:51 | DEBUG    |   P(evidence) normalising constant = 0.757895
+2026-09-26 00:14:51 | DEBUG    |   Posteriors  : {'legitimate': 0.166667, 'concerning': 0.833333}
+2026-09-26 00:14:51 | INFO     | Bayesian update complete -> P(legitimate)=0.1667, P(concerning)=0.8333
+2026-09-26 00:14:51 | INFO     | Stage 4 - second Bayesian update after requesting evidence
+2026-09-26 00:14:51 | INFO     | Previous posterior / new prior: {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:14:51 | INFO     | New evidence: Previous 3-4 months show the same unusual transaction pattern consistently.
+2026-09-26 00:14:51 | INFO     | New evidence likelihoods (SYNTHETIC): {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:14:51 | INFO     | Second posterior: {'legitimate': 0.16666666666666663, 'concerning': 0.8333333333333333}
+2026-09-26 00:14:51 | INFO     | Updated P(legitimate | all evidence) = 0.1667
+2026-09-26 00:14:51 | INFO     | Updated P(concerning | all evidence) = 0.8333
+2026-09-26 00:14:51 | INFO     | Stage 5E - outcome-to-posterior scenarios
+2026-09-26 00:14:51 | INFO     |   SUPPORTING_LEGITIMATE (outcome probability 20%): posterior={'legitimate': 0.16666666666666663, 'concerning': 0.8333333333333333}
+2026-09-26 00:14:51 | INFO     |   SUPPORTING_CONCERNING (outcome probability 60%): posterior not defined yet; likelihood model required
+2026-09-26 00:14:51 | INFO     |   UNCLEAR_CONFLICTING (outcome probability 20%): posterior not defined yet; likelihood model required
+2026-09-26 00:14:51 | DEBUG    | Inputs used  -> priors={'legitimate': 0.5, 'concerning': 0.5}, likelihoods={'legitimate': 0.2, 'concerning': 0.75}, evidence_available=True
+2026-09-26 00:14:51 | DEBUG    | request_cost = 10 (SYNTHETIC experimental unit)
+2026-09-26 00:14:51 | INFO     | Selected action: REQUEST_EVIDENCE
+2026-09-26 00:14:51 | INFO     | request_cost introduced: 10 experimental units (Stage 3 parameter)
+2026-09-26 00:14:51 | INFO     | Stage 5A synthetic decision costs (experimental units): correct PROCEED=0, wrong PROCEED=100, REQUEST_EVIDENCE=10, HUMAN_REVIEW=30
+2026-09-26 00:14:51 | INFO     | Expected cost of PROCEEDING NOW = 78.9474 synthetic experimental units
+2026-09-26 00:14:51 | INFO     | Experiment finished. Log saved to: D:\Ayush Singh course\Weekly deliverables\Week 1\experiment.log
+2026-09-26 00:15:06 | INFO     | =======================================================
+2026-09-26 00:15:06 | INFO     | Experiment started: Case 1 - Loan Agent
+2026-09-26 00:15:06 | INFO     | =======================================================
+2026-09-26 00:15:06 | DEBUG    | bayesian_update() called
+2026-09-26 00:15:06 | DEBUG    |   Priors      : {'legitimate': 0.5, 'concerning': 0.5}
+2026-09-26 00:15:06 | DEBUG    |   Likelihoods : {'legitimate': 0.2, 'concerning': 0.75}
+2026-09-26 00:15:06 | DEBUG    |   Joint probs : {'legitimate': 0.1, 'concerning': 0.375}
+2026-09-26 00:15:06 | DEBUG    |   P(evidence) normalising constant = 0.475000
+2026-09-26 00:15:06 | DEBUG    |   Posteriors  : {'legitimate': 0.210526, 'concerning': 0.789474}
+2026-09-26 00:15:06 | INFO     | Bayesian update complete -> P(legitimate)=0.2105, P(concerning)=0.7895
+2026-09-26 00:15:06 | INFO     | Stage 5D - synthetic outcome probabilities
+2026-09-26 00:15:06 | INFO     |   SUPPORTING_LEGITIMATE = 20.00% (SYNTHETIC)
+2026-09-26 00:15:06 | INFO     |   SUPPORTING_CONCERNING = 60.00% (SYNTHETIC)
+2026-09-26 00:15:06 | INFO     |   UNCLEAR_CONFLICTING = 20.00% (SYNTHETIC)
+2026-09-26 00:15:06 | INFO     |   Total = 100.00%
+2026-09-26 00:15:06 | INFO     |   These are synthetic assumptions for the experiment, not real banking statistics.
+2026-09-26 00:15:06 | INFO     | Stage 5C - possible evidence outcomes (synthetic categories)
+2026-09-26 00:15:06 | INFO     |   Outcome 1 - SUPPORTING_LEGITIMATE
+2026-09-26 00:15:06 | INFO     |     Description: The historical statements show a pattern that is more compatible with the legitimate state.
+2026-09-26 00:15:06 | INFO     |     Probability: NOT DEFINED YET
+2026-09-26 00:15:06 | INFO     |   Outcome 2 - SUPPORTING_CONCERNING
+2026-09-26 00:15:06 | INFO     |     Description: The historical statements show a pattern that is more compatible with the concerning state.
+2026-09-26 00:15:06 | INFO     |     Probability: NOT DEFINED YET
+2026-09-26 00:15:06 | INFO     |   Outcome 3 - UNCLEAR_CONFLICTING
+2026-09-26 00:15:06 | INFO     |     Description: The additional evidence is ambiguous, contradictory, incomplete, or otherwise does not meaningfully resolve the uncertainty.
+2026-09-26 00:15:06 | INFO     |     Probability: NOT DEFINED YET
+2026-09-26 00:15:06 | INFO     | Stage 5B - expected cost of acting now (synthetic experimental units)
+2026-09-26 00:15:06 | INFO     |   P(legitimate) = 0.210526; P(concerning) = 0.789474
+2026-09-26 00:15:06 | INFO     |   Cost if legitimate and PROCEED = 0; cost if concerning and PROCEED = 100
+2026-09-26 00:15:06 | INFO     |   Expected cost of PROCEEDING NOW = 78.9474
+2026-09-26 00:15:06 | DEBUG    | action_policy() called
+2026-09-26 00:15:06 | DEBUG    |   P(concerning)=0.7895  useful_evidence_available=True
+2026-09-26 00:15:06 | INFO     | Policy Rule 2 matched -> action: REQUEST_EVIDENCE  (P(concerning)=0.7895, evidence available)
+2026-09-26 00:15:06 | DEBUG    | bayesian_update() called
+2026-09-26 00:15:06 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:15:06 | DEBUG    |   Likelihoods : {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:15:06 | DEBUG    |   Joint probs : {'legitimate': 0.126316, 'concerning': 0.631579}
+2026-09-26 00:15:06 | DEBUG    |   P(evidence) normalising constant = 0.757895
+2026-09-26 00:15:06 | DEBUG    |   Posteriors  : {'legitimate': 0.166667, 'concerning': 0.833333}
+2026-09-26 00:15:06 | INFO     | Bayesian update complete -> P(legitimate)=0.1667, P(concerning)=0.8333
+2026-09-26 00:15:06 | DEBUG    | bayesian_update() called
+2026-09-26 00:15:06 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:15:06 | DEBUG    |   Likelihoods : {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:15:06 | DEBUG    |   Joint probs : {'legitimate': 0.126316, 'concerning': 0.631579}
+2026-09-26 00:15:06 | DEBUG    |   P(evidence) normalising constant = 0.757895
+2026-09-26 00:15:06 | DEBUG    |   Posteriors  : {'legitimate': 0.166667, 'concerning': 0.833333}
+2026-09-26 00:15:06 | INFO     | Bayesian update complete -> P(legitimate)=0.1667, P(concerning)=0.8333
+2026-09-26 00:15:06 | INFO     | Stage 4 - second Bayesian update after requesting evidence
+2026-09-26 00:15:06 | INFO     | Previous posterior / new prior: {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:15:06 | INFO     | New evidence: Previous 3-4 months show the same unusual transaction pattern consistently.
+2026-09-26 00:15:06 | INFO     | New evidence likelihoods (SYNTHETIC): {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:15:06 | INFO     | Second posterior: {'legitimate': 0.16666666666666663, 'concerning': 0.8333333333333333}
+2026-09-26 00:15:06 | INFO     | Updated P(legitimate | all evidence) = 0.1667
+2026-09-26 00:15:06 | INFO     | Updated P(concerning | all evidence) = 0.8333
+2026-09-26 00:15:06 | INFO     | Stage 5E - outcome-to-posterior scenarios
+2026-09-26 00:15:06 | INFO     |   SUPPORTING_LEGITIMATE (outcome probability 20%): posterior={'legitimate': 0.16666666666666663, 'concerning': 0.8333333333333333}
+2026-09-26 00:15:06 | INFO     |   SUPPORTING_CONCERNING (outcome probability 60%): posterior not defined yet; likelihood model required
+2026-09-26 00:15:06 | INFO     |   UNCLEAR_CONFLICTING (outcome probability 20%): posterior not defined yet; likelihood model required
+2026-09-26 00:15:06 | DEBUG    | Inputs used  -> priors={'legitimate': 0.5, 'concerning': 0.5}, likelihoods={'legitimate': 0.2, 'concerning': 0.75}, evidence_available=True
+2026-09-26 00:15:06 | DEBUG    | request_cost = 10 (SYNTHETIC experimental unit)
+2026-09-26 00:15:06 | INFO     | Selected action: REQUEST_EVIDENCE
+2026-09-26 00:15:06 | INFO     | request_cost introduced: 10 experimental units (Stage 3 parameter)
+2026-09-26 00:15:06 | INFO     | Stage 5A synthetic decision costs (experimental units): correct PROCEED=0, wrong PROCEED=100, REQUEST_EVIDENCE=10, HUMAN_REVIEW=30
+2026-09-26 00:15:06 | INFO     | Expected cost of PROCEEDING NOW = 78.9474 synthetic experimental units
+2026-09-26 00:15:06 | INFO     | Experiment finished. Log saved to: d:\Ayush Singh course\Weekly deliverables\Week 1\experiment.log
+2026-09-26 00:19:40 | INFO     | =======================================================
+2026-09-26 00:19:40 | INFO     | Experiment started: Case 1 - Loan Agent
+2026-09-26 00:19:40 | INFO     | =======================================================
+2026-09-26 00:19:40 | DEBUG    | bayesian_update() called
+2026-09-26 00:19:40 | DEBUG    |   Priors      : {'legitimate': 0.5, 'concerning': 0.5}
+2026-09-26 00:19:40 | DEBUG    |   Likelihoods : {'legitimate': 0.2, 'concerning': 0.75}
+2026-09-26 00:19:40 | DEBUG    |   Joint probs : {'legitimate': 0.1, 'concerning': 0.375}
+2026-09-26 00:19:40 | DEBUG    |   P(evidence) normalising constant = 0.475000
+2026-09-26 00:19:40 | DEBUG    |   Posteriors  : {'legitimate': 0.210526, 'concerning': 0.789474}
+2026-09-26 00:19:40 | INFO     | Bayesian update complete -> P(legitimate)=0.2105, P(concerning)=0.7895
+2026-09-26 00:19:40 | INFO     | Stage 5D - synthetic outcome probabilities
+2026-09-26 00:19:40 | INFO     |   SUPPORTING_LEGITIMATE = 20.00% (SYNTHETIC)
+2026-09-26 00:19:40 | INFO     |   SUPPORTING_CONCERNING = 60.00% (SYNTHETIC)
+2026-09-26 00:19:40 | INFO     |   UNCLEAR_CONFLICTING = 20.00% (SYNTHETIC)
+2026-09-26 00:19:40 | INFO     |   Total = 100.00%
+2026-09-26 00:19:40 | INFO     |   These are synthetic assumptions for the experiment, not real banking statistics.
+2026-09-26 00:19:40 | INFO     | Stage 5C - possible evidence outcomes (synthetic categories)
+2026-09-26 00:19:40 | INFO     |   Outcome 1 - SUPPORTING_LEGITIMATE
+2026-09-26 00:19:40 | INFO     |     Description: The historical statements show a pattern that is more compatible with the legitimate state.
+2026-09-26 00:19:40 | INFO     |     Probability: NOT DEFINED YET
+2026-09-26 00:19:40 | INFO     |   Outcome 2 - SUPPORTING_CONCERNING
+2026-09-26 00:19:40 | INFO     |     Description: The historical statements show a pattern that is more compatible with the concerning state.
+2026-09-26 00:19:40 | INFO     |     Probability: NOT DEFINED YET
+2026-09-26 00:19:40 | INFO     |   Outcome 3 - UNCLEAR_CONFLICTING
+2026-09-26 00:19:40 | INFO     |     Description: The additional evidence is ambiguous, contradictory, incomplete, or otherwise does not meaningfully resolve the uncertainty.
+2026-09-26 00:19:40 | INFO     |     Probability: NOT DEFINED YET
+2026-09-26 00:19:40 | INFO     | Stage 5B - expected cost of acting now (synthetic experimental units)
+2026-09-26 00:19:40 | INFO     |   P(legitimate) = 0.210526; P(concerning) = 0.789474
+2026-09-26 00:19:40 | INFO     |   Cost if legitimate and PROCEED = 0; cost if concerning and PROCEED = 100
+2026-09-26 00:19:40 | INFO     |   Expected cost of PROCEEDING NOW = 78.9474
+2026-09-26 00:19:40 | DEBUG    | action_policy() called
+2026-09-26 00:19:40 | DEBUG    |   P(concerning)=0.7895  useful_evidence_available=True
+2026-09-26 00:19:40 | INFO     | Policy Rule 2 matched -> action: REQUEST_EVIDENCE  (P(concerning)=0.7895, evidence available)
+2026-09-26 00:19:40 | DEBUG    | bayesian_update() called
+2026-09-26 00:19:40 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:19:40 | DEBUG    |   Likelihoods : {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:19:40 | DEBUG    |   Joint probs : {'legitimate': 0.126316, 'concerning': 0.631579}
+2026-09-26 00:19:40 | DEBUG    |   P(evidence) normalising constant = 0.757895
+2026-09-26 00:19:40 | DEBUG    |   Posteriors  : {'legitimate': 0.166667, 'concerning': 0.833333}
+2026-09-26 00:19:40 | INFO     | Bayesian update complete -> P(legitimate)=0.1667, P(concerning)=0.8333
+2026-09-26 00:19:40 | DEBUG    | bayesian_update() called
+2026-09-26 00:19:40 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:19:40 | DEBUG    |   Likelihoods : {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:19:40 | DEBUG    |   Joint probs : {'legitimate': 0.126316, 'concerning': 0.631579}
+2026-09-26 00:19:40 | DEBUG    |   P(evidence) normalising constant = 0.757895
+2026-09-26 00:19:40 | DEBUG    |   Posteriors  : {'legitimate': 0.166667, 'concerning': 0.833333}
+2026-09-26 00:19:40 | INFO     | Bayesian update complete -> P(legitimate)=0.1667, P(concerning)=0.8333
+2026-09-26 00:19:40 | DEBUG    | bayesian_update() called
+2026-09-26 00:19:40 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:19:40 | DEBUG    |   Likelihoods : {'legitimate': 0.2, 'concerning': 0.8}
+2026-09-26 00:19:40 | DEBUG    |   Joint probs : {'legitimate': 0.042105, 'concerning': 0.631579}
+2026-09-26 00:19:40 | DEBUG    |   P(evidence) normalising constant = 0.673684
+2026-09-26 00:19:40 | DEBUG    |   Posteriors  : {'legitimate': 0.0625, 'concerning': 0.9375}
+2026-09-26 00:19:40 | INFO     | Bayesian update complete -> P(legitimate)=0.0625, P(concerning)=0.9375
+2026-09-26 00:19:40 | DEBUG    | bayesian_update() called
+2026-09-26 00:19:40 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:19:40 | DEBUG    |   Likelihoods : {'legitimate': 0.5, 'concerning': 0.5}
+2026-09-26 00:19:40 | DEBUG    |   Joint probs : {'legitimate': 0.105263, 'concerning': 0.394737}
+2026-09-26 00:19:40 | DEBUG    |   P(evidence) normalising constant = 0.500000
+2026-09-26 00:19:40 | DEBUG    |   Posteriors  : {'legitimate': 0.210526, 'concerning': 0.789474}
+2026-09-26 00:19:40 | INFO     | Bayesian update complete -> P(legitimate)=0.2105, P(concerning)=0.7895
+2026-09-26 00:19:40 | INFO     | Stage 4 - second Bayesian update after requesting evidence
+2026-09-26 00:19:40 | INFO     | Previous posterior / new prior: {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:19:40 | INFO     | New evidence: Previous 3-4 months show the same unusual transaction pattern consistently.
+2026-09-26 00:19:40 | INFO     | New evidence likelihoods (SYNTHETIC): {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:19:40 | INFO     | Second posterior: {'legitimate': 0.16666666666666663, 'concerning': 0.8333333333333333}
+2026-09-26 00:19:40 | INFO     | Updated P(legitimate | all evidence) = 0.1667
+2026-09-26 00:19:40 | INFO     | Updated P(concerning | all evidence) = 0.8333
+2026-09-26 00:19:40 | INFO     | Stage 5E - outcome-to-posterior scenarios
+2026-09-26 00:19:40 | INFO     |   SUPPORTING_LEGITIMATE: outcome probability=20.00%, synthetic likelihoods={'legitimate': 0.6, 'concerning': 0.8}, posterior={'legitimate': 0.16666666666666663, 'concerning': 0.8333333333333333}
+2026-09-26 00:19:40 | INFO     |   SUPPORTING_CONCERNING: outcome probability=60.00%, synthetic likelihoods={'legitimate': 0.2, 'concerning': 0.8}, posterior={'legitimate': 0.0625, 'concerning': 0.9375}
+2026-09-26 00:19:40 | INFO     |   UNCLEAR_CONFLICTING: outcome probability=20.00%, synthetic likelihoods={'legitimate': 0.5, 'concerning': 0.5}, posterior={'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:19:40 | INFO     | Stage 5G downstream actions (synthetic expected costs)
+2026-09-26 00:19:40 | INFO     |   SUPPORTING_LEGITIMATE: PROCEED cost=83.3333, HUMAN_REVIEW cost=30.0000, selected=HUMAN_REVIEW at 30.0000
+2026-09-26 00:19:40 | INFO     |   SUPPORTING_CONCERNING: PROCEED cost=93.7500, HUMAN_REVIEW cost=30.0000, selected=HUMAN_REVIEW at 30.0000
+2026-09-26 00:19:40 | INFO     |   UNCLEAR_CONFLICTING: PROCEED cost=78.9474, HUMAN_REVIEW cost=30.0000, selected=HUMAN_REVIEW at 30.0000
+2026-09-26 00:19:40 | INFO     | Stage 5H expected REQUEST_EVIDENCE cost = 40.0000 (synthetic experimental units)
+2026-09-26 00:19:40 | INFO     | Stage 5H expected benefit vs PROCEEDING NOW = 38.9474 (synthetic experimental units)
+2026-09-26 00:19:40 | DEBUG    | Inputs used  -> priors={'legitimate': 0.5, 'concerning': 0.5}, likelihoods={'legitimate': 0.2, 'concerning': 0.75}, evidence_available=True
+2026-09-26 00:19:40 | DEBUG    | request_cost = 10 (SYNTHETIC experimental unit)
+2026-09-26 00:19:40 | INFO     | Selected action: REQUEST_EVIDENCE
+2026-09-26 00:19:40 | INFO     | request_cost introduced: 10 experimental units (Stage 3 parameter)
+2026-09-26 00:19:40 | INFO     | Stage 5A synthetic decision costs (experimental units): correct PROCEED=0, wrong PROCEED=100, REQUEST_EVIDENCE=10, HUMAN_REVIEW=30
+2026-09-26 00:19:40 | INFO     | Expected cost of PROCEEDING NOW = 78.9474 synthetic experimental units
+2026-09-26 00:19:40 | INFO     | Experiment finished. Log saved to: D:\Ayush Singh course\Weekly deliverables\Week 1\experiment.log
+2026-09-26 00:20:20 | INFO     | =======================================================
+2026-09-26 00:20:20 | INFO     | Experiment started: Case 1 - Loan Agent
+2026-09-26 00:20:20 | INFO     | =======================================================
+2026-09-26 00:20:20 | DEBUG    | bayesian_update() called
+2026-09-26 00:20:20 | DEBUG    |   Priors      : {'legitimate': 0.5, 'concerning': 0.5}
+2026-09-26 00:20:20 | DEBUG    |   Likelihoods : {'legitimate': 0.2, 'concerning': 0.75}
+2026-09-26 00:20:20 | DEBUG    |   Joint probs : {'legitimate': 0.1, 'concerning': 0.375}
+2026-09-26 00:20:20 | DEBUG    |   P(evidence) normalising constant = 0.475000
+2026-09-26 00:20:20 | DEBUG    |   Posteriors  : {'legitimate': 0.210526, 'concerning': 0.789474}
+2026-09-26 00:20:20 | INFO     | Bayesian update complete -> P(legitimate)=0.2105, P(concerning)=0.7895
+2026-09-26 00:20:20 | INFO     | Stage 5D - synthetic outcome probabilities
+2026-09-26 00:20:20 | INFO     |   SUPPORTING_LEGITIMATE = 20.00% (SYNTHETIC)
+2026-09-26 00:20:20 | INFO     |   SUPPORTING_CONCERNING = 60.00% (SYNTHETIC)
+2026-09-26 00:20:20 | INFO     |   UNCLEAR_CONFLICTING = 20.00% (SYNTHETIC)
+2026-09-26 00:20:20 | INFO     |   Total = 100.00%
+2026-09-26 00:20:20 | INFO     |   These are synthetic assumptions for the experiment, not real banking statistics.
+2026-09-26 00:20:20 | INFO     | Stage 5C - possible evidence outcomes (synthetic categories)
+2026-09-26 00:20:20 | INFO     |   Outcome 1 - SUPPORTING_LEGITIMATE
+2026-09-26 00:20:20 | INFO     |     Description: The historical statements show a pattern that is more compatible with the legitimate state.
+2026-09-26 00:20:20 | INFO     |     Outcome probability: 20.00% (SYNTHETIC)
+2026-09-26 00:20:20 | INFO     |   Outcome 2 - SUPPORTING_CONCERNING
+2026-09-26 00:20:20 | INFO     |     Description: The historical statements show a pattern that is more compatible with the concerning state.
+2026-09-26 00:20:20 | INFO     |     Outcome probability: 60.00% (SYNTHETIC)
+2026-09-26 00:20:20 | INFO     |   Outcome 3 - UNCLEAR_CONFLICTING
+2026-09-26 00:20:20 | INFO     |     Description: The additional evidence is ambiguous, contradictory, incomplete, or otherwise does not meaningfully resolve the uncertainty.
+2026-09-26 00:20:20 | INFO     |     Outcome probability: 20.00% (SYNTHETIC)
+2026-09-26 00:20:20 | INFO     | Stage 5B - expected cost of acting now (synthetic experimental units)
+2026-09-26 00:20:20 | INFO     |   P(legitimate) = 0.210526; P(concerning) = 0.789474
+2026-09-26 00:20:20 | INFO     |   Cost if legitimate and PROCEED = 0; cost if concerning and PROCEED = 100
+2026-09-26 00:20:20 | INFO     |   Expected cost of PROCEEDING NOW = 78.9474
+2026-09-26 00:20:20 | DEBUG    | action_policy() called
+2026-09-26 00:20:20 | DEBUG    |   P(concerning)=0.7895  useful_evidence_available=True
+2026-09-26 00:20:20 | INFO     | Policy Rule 2 matched -> action: REQUEST_EVIDENCE  (P(concerning)=0.7895, evidence available)
+2026-09-26 00:20:20 | DEBUG    | bayesian_update() called
+2026-09-26 00:20:20 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:20:20 | DEBUG    |   Likelihoods : {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:20:20 | DEBUG    |   Joint probs : {'legitimate': 0.126316, 'concerning': 0.631579}
+2026-09-26 00:20:20 | DEBUG    |   P(evidence) normalising constant = 0.757895
+2026-09-26 00:20:20 | DEBUG    |   Posteriors  : {'legitimate': 0.166667, 'concerning': 0.833333}
+2026-09-26 00:20:20 | INFO     | Bayesian update complete -> P(legitimate)=0.1667, P(concerning)=0.8333
+2026-09-26 00:20:20 | DEBUG    | bayesian_update() called
+2026-09-26 00:20:20 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:20:20 | DEBUG    |   Likelihoods : {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:20:20 | DEBUG    |   Joint probs : {'legitimate': 0.126316, 'concerning': 0.631579}
+2026-09-26 00:20:20 | DEBUG    |   P(evidence) normalising constant = 0.757895
+2026-09-26 00:20:20 | DEBUG    |   Posteriors  : {'legitimate': 0.166667, 'concerning': 0.833333}
+2026-09-26 00:20:20 | INFO     | Bayesian update complete -> P(legitimate)=0.1667, P(concerning)=0.8333
+2026-09-26 00:20:20 | DEBUG    | bayesian_update() called
+2026-09-26 00:20:20 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:20:20 | DEBUG    |   Likelihoods : {'legitimate': 0.2, 'concerning': 0.8}
+2026-09-26 00:20:20 | DEBUG    |   Joint probs : {'legitimate': 0.042105, 'concerning': 0.631579}
+2026-09-26 00:20:20 | DEBUG    |   P(evidence) normalising constant = 0.673684
+2026-09-26 00:20:20 | DEBUG    |   Posteriors  : {'legitimate': 0.0625, 'concerning': 0.9375}
+2026-09-26 00:20:20 | INFO     | Bayesian update complete -> P(legitimate)=0.0625, P(concerning)=0.9375
+2026-09-26 00:20:20 | DEBUG    | bayesian_update() called
+2026-09-26 00:20:20 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:20:20 | DEBUG    |   Likelihoods : {'legitimate': 0.5, 'concerning': 0.5}
+2026-09-26 00:20:20 | DEBUG    |   Joint probs : {'legitimate': 0.105263, 'concerning': 0.394737}
+2026-09-26 00:20:20 | DEBUG    |   P(evidence) normalising constant = 0.500000
+2026-09-26 00:20:20 | DEBUG    |   Posteriors  : {'legitimate': 0.210526, 'concerning': 0.789474}
+2026-09-26 00:20:20 | INFO     | Bayesian update complete -> P(legitimate)=0.2105, P(concerning)=0.7895
+2026-09-26 00:20:20 | INFO     | Stage 4 - second Bayesian update after requesting evidence
+2026-09-26 00:20:20 | INFO     | Previous posterior / new prior: {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:20:20 | INFO     | New evidence: Previous 3-4 months show the same unusual transaction pattern consistently.
+2026-09-26 00:20:20 | INFO     | New evidence likelihoods (SYNTHETIC): {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:20:20 | INFO     | Second posterior: {'legitimate': 0.16666666666666663, 'concerning': 0.8333333333333333}
+2026-09-26 00:20:20 | INFO     | Updated P(legitimate | all evidence) = 0.1667
+2026-09-26 00:20:20 | INFO     | Updated P(concerning | all evidence) = 0.8333
+2026-09-26 00:20:20 | INFO     | Stage 5F - outcome-to-posterior scenarios
+2026-09-26 00:20:20 | INFO     |   SUPPORTING_LEGITIMATE: outcome probability=20.00%, synthetic likelihoods={'legitimate': 0.6, 'concerning': 0.8}, posterior={'legitimate': 0.16666666666666663, 'concerning': 0.8333333333333333}
+2026-09-26 00:20:20 | INFO     |   SUPPORTING_CONCERNING: outcome probability=60.00%, synthetic likelihoods={'legitimate': 0.2, 'concerning': 0.8}, posterior={'legitimate': 0.0625, 'concerning': 0.9375}
+2026-09-26 00:20:20 | INFO     |   UNCLEAR_CONFLICTING: outcome probability=20.00%, synthetic likelihoods={'legitimate': 0.5, 'concerning': 0.5}, posterior={'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:20:20 | INFO     | Stage 5G downstream actions (synthetic expected costs)
+2026-09-26 00:20:20 | INFO     |   SUPPORTING_LEGITIMATE: PROCEED cost=83.3333, HUMAN_REVIEW cost=30.0000, selected=HUMAN_REVIEW at 30.0000
+2026-09-26 00:20:20 | INFO     |   SUPPORTING_CONCERNING: PROCEED cost=93.7500, HUMAN_REVIEW cost=30.0000, selected=HUMAN_REVIEW at 30.0000
+2026-09-26 00:20:20 | INFO     |   UNCLEAR_CONFLICTING: PROCEED cost=78.9474, HUMAN_REVIEW cost=30.0000, selected=HUMAN_REVIEW at 30.0000
+2026-09-26 00:20:20 | INFO     | Stage 5H expected REQUEST_EVIDENCE cost = 40.0000 (synthetic experimental units)
+2026-09-26 00:20:20 | INFO     | Stage 5H expected benefit vs PROCEEDING NOW = 38.9474 (synthetic experimental units)
+2026-09-26 00:20:20 | DEBUG    | Inputs used  -> priors={'legitimate': 0.5, 'concerning': 0.5}, likelihoods={'legitimate': 0.2, 'concerning': 0.75}, evidence_available=True
+2026-09-26 00:20:20 | DEBUG    | request_cost = 10 (SYNTHETIC experimental unit)
+2026-09-26 00:20:20 | INFO     | Selected action: REQUEST_EVIDENCE
+2026-09-26 00:20:20 | INFO     | request_cost introduced: 10 experimental units (Stage 3 parameter)
+2026-09-26 00:20:20 | INFO     | Stage 5A synthetic decision costs (experimental units): correct PROCEED=0, wrong PROCEED=100, REQUEST_EVIDENCE=10, HUMAN_REVIEW=30
+2026-09-26 00:20:20 | INFO     | Expected cost of PROCEEDING NOW = 78.9474 synthetic experimental units
+2026-09-26 00:20:20 | INFO     | Experiment finished. Log saved to: D:\Ayush Singh course\Weekly deliverables\Week 1\experiment.log
+2026-09-26 00:27:43 | INFO     | =======================================================
+2026-09-26 00:27:43 | INFO     | Experiment started: Case 1 - Loan Agent
+2026-09-26 00:27:43 | INFO     | =======================================================
+2026-09-26 00:27:43 | DEBUG    | bayesian_update() called
+2026-09-26 00:27:43 | DEBUG    |   Priors      : {'legitimate': 0.5, 'concerning': 0.5}
+2026-09-26 00:27:43 | DEBUG    |   Likelihoods : {'legitimate': 0.2, 'concerning': 0.75}
+2026-09-26 00:27:43 | DEBUG    |   Joint probs : {'legitimate': 0.1, 'concerning': 0.375}
+2026-09-26 00:27:43 | DEBUG    |   P(evidence) normalising constant = 0.475000
+2026-09-26 00:27:43 | DEBUG    |   Posteriors  : {'legitimate': 0.210526, 'concerning': 0.789474}
+2026-09-26 00:27:43 | INFO     | Bayesian update complete -> P(legitimate)=0.2105, P(concerning)=0.7895
+2026-09-26 00:27:43 | INFO     | Stage 5D - synthetic outcome probabilities
+2026-09-26 00:27:43 | INFO     |   SUPPORTING_LEGITIMATE = 20.00% (SYNTHETIC)
+2026-09-26 00:27:43 | INFO     |   SUPPORTING_CONCERNING = 60.00% (SYNTHETIC)
+2026-09-26 00:27:43 | INFO     |   UNCLEAR_CONFLICTING = 20.00% (SYNTHETIC)
+2026-09-26 00:27:43 | INFO     |   Total = 100.00%
+2026-09-26 00:27:43 | INFO     |   These are synthetic assumptions for the experiment, not real banking statistics.
+2026-09-26 00:27:43 | INFO     | Stage 5C - possible evidence outcomes (synthetic categories)
+2026-09-26 00:27:43 | INFO     |   Outcome 1 - SUPPORTING_LEGITIMATE
+2026-09-26 00:27:43 | INFO     |     Description: The historical statements show a pattern that is more compatible with the legitimate state.
+2026-09-26 00:27:43 | INFO     |     Outcome probability: 20.00% (SYNTHETIC)
+2026-09-26 00:27:43 | INFO     |   Outcome 2 - SUPPORTING_CONCERNING
+2026-09-26 00:27:43 | INFO     |     Description: The historical statements show a pattern that is more compatible with the concerning state.
+2026-09-26 00:27:43 | INFO     |     Outcome probability: 60.00% (SYNTHETIC)
+2026-09-26 00:27:43 | INFO     |   Outcome 3 - UNCLEAR_CONFLICTING
+2026-09-26 00:27:43 | INFO     |     Description: The additional evidence is ambiguous, contradictory, incomplete, or otherwise does not meaningfully resolve the uncertainty.
+2026-09-26 00:27:43 | INFO     |     Outcome probability: 20.00% (SYNTHETIC)
+2026-09-26 00:27:43 | INFO     | Stage 5B - expected cost of acting now (synthetic experimental units)
+2026-09-26 00:27:43 | INFO     |   P(legitimate) = 0.210526; P(concerning) = 0.789474
+2026-09-26 00:27:43 | INFO     |   Cost if legitimate and PROCEED = 0; cost if concerning and PROCEED = 100
+2026-09-26 00:27:43 | INFO     |   Expected cost of PROCEEDING NOW = 78.9474
+2026-09-26 00:27:43 | DEBUG    | action_policy() called
+2026-09-26 00:27:43 | DEBUG    |   P(concerning)=0.7895  useful_evidence_available=True
+2026-09-26 00:27:43 | INFO     | Policy Rule 2 matched -> action: REQUEST_EVIDENCE  (P(concerning)=0.7895, evidence available)
+2026-09-26 00:27:43 | DEBUG    | bayesian_update() called
+2026-09-26 00:27:43 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:27:43 | DEBUG    |   Likelihoods : {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:27:43 | DEBUG    |   Joint probs : {'legitimate': 0.126316, 'concerning': 0.631579}
+2026-09-26 00:27:43 | DEBUG    |   P(evidence) normalising constant = 0.757895
+2026-09-26 00:27:43 | DEBUG    |   Posteriors  : {'legitimate': 0.166667, 'concerning': 0.833333}
+2026-09-26 00:27:43 | INFO     | Bayesian update complete -> P(legitimate)=0.1667, P(concerning)=0.8333
+2026-09-26 00:27:43 | DEBUG    | bayesian_update() called
+2026-09-26 00:27:43 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:27:43 | DEBUG    |   Likelihoods : {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:27:43 | DEBUG    |   Joint probs : {'legitimate': 0.126316, 'concerning': 0.631579}
+2026-09-26 00:27:43 | DEBUG    |   P(evidence) normalising constant = 0.757895
+2026-09-26 00:27:43 | DEBUG    |   Posteriors  : {'legitimate': 0.166667, 'concerning': 0.833333}
+2026-09-26 00:27:43 | INFO     | Bayesian update complete -> P(legitimate)=0.1667, P(concerning)=0.8333
+2026-09-26 00:27:43 | DEBUG    | bayesian_update() called
+2026-09-26 00:27:43 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:27:43 | DEBUG    |   Likelihoods : {'legitimate': 0.2, 'concerning': 0.8}
+2026-09-26 00:27:43 | DEBUG    |   Joint probs : {'legitimate': 0.042105, 'concerning': 0.631579}
+2026-09-26 00:27:43 | DEBUG    |   P(evidence) normalising constant = 0.673684
+2026-09-26 00:27:43 | DEBUG    |   Posteriors  : {'legitimate': 0.0625, 'concerning': 0.9375}
+2026-09-26 00:27:43 | INFO     | Bayesian update complete -> P(legitimate)=0.0625, P(concerning)=0.9375
+2026-09-26 00:27:43 | DEBUG    | bayesian_update() called
+2026-09-26 00:27:43 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:27:43 | DEBUG    |   Likelihoods : {'legitimate': 0.5, 'concerning': 0.5}
+2026-09-26 00:27:43 | DEBUG    |   Joint probs : {'legitimate': 0.105263, 'concerning': 0.394737}
+2026-09-26 00:27:43 | DEBUG    |   P(evidence) normalising constant = 0.500000
+2026-09-26 00:27:43 | DEBUG    |   Posteriors  : {'legitimate': 0.210526, 'concerning': 0.789474}
+2026-09-26 00:27:43 | INFO     | Bayesian update complete -> P(legitimate)=0.2105, P(concerning)=0.7895
+2026-09-26 00:27:43 | INFO     | Stage 4 - second Bayesian update after requesting evidence
+2026-09-26 00:27:43 | INFO     | Previous posterior / new prior: {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:27:43 | INFO     | New evidence: Previous 3-4 months show the same unusual transaction pattern consistently.
+2026-09-26 00:27:43 | INFO     | New evidence likelihoods (SYNTHETIC): {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:27:43 | INFO     | Second posterior: {'legitimate': 0.16666666666666663, 'concerning': 0.8333333333333333}
+2026-09-26 00:27:43 | INFO     | Updated P(legitimate | all evidence) = 0.1667
+2026-09-26 00:27:43 | INFO     | Updated P(concerning | all evidence) = 0.8333
+2026-09-26 00:27:43 | INFO     | Stage 5F - outcome-to-posterior scenarios
+2026-09-26 00:27:43 | INFO     |   SUPPORTING_LEGITIMATE: outcome probability=20.00%, synthetic likelihoods={'legitimate': 0.6, 'concerning': 0.8}, posterior={'legitimate': 0.16666666666666663, 'concerning': 0.8333333333333333}
+2026-09-26 00:27:43 | INFO     |   SUPPORTING_CONCERNING: outcome probability=60.00%, synthetic likelihoods={'legitimate': 0.2, 'concerning': 0.8}, posterior={'legitimate': 0.0625, 'concerning': 0.9375}
+2026-09-26 00:27:43 | INFO     |   UNCLEAR_CONFLICTING: outcome probability=20.00%, synthetic likelihoods={'legitimate': 0.5, 'concerning': 0.5}, posterior={'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:27:43 | INFO     | Stage 5G downstream actions (synthetic expected costs)
+2026-09-26 00:27:43 | INFO     |   SUPPORTING_LEGITIMATE: PROCEED cost=83.3333, HUMAN_REVIEW cost=30.0000, selected=HUMAN_REVIEW at 30.0000
+2026-09-26 00:27:43 | INFO     |   SUPPORTING_CONCERNING: PROCEED cost=93.7500, HUMAN_REVIEW cost=30.0000, selected=HUMAN_REVIEW at 30.0000
+2026-09-26 00:27:43 | INFO     |   UNCLEAR_CONFLICTING: PROCEED cost=78.9474, HUMAN_REVIEW cost=30.0000, selected=HUMAN_REVIEW at 30.0000
+2026-09-26 00:27:43 | INFO     | Stage 5H expected REQUEST_EVIDENCE cost = 40.0000 (synthetic experimental units)
+2026-09-26 00:27:43 | INFO     | Stage 5H expected benefit vs PROCEEDING NOW = 38.9474 (synthetic experimental units)
+2026-09-26 00:27:43 | DEBUG    | Inputs used  -> priors={'legitimate': 0.5, 'concerning': 0.5}, likelihoods={'legitimate': 0.2, 'concerning': 0.75}, evidence_available=True
+2026-09-26 00:27:43 | DEBUG    | request_cost = 10 (SYNTHETIC experimental unit)
+2026-09-26 00:27:43 | INFO     | Selected action: REQUEST_EVIDENCE
+2026-09-26 00:27:43 | INFO     | request_cost introduced: 10 experimental units (Stage 3 parameter)
+2026-09-26 00:27:43 | INFO     | Stage 5A synthetic decision costs (experimental units): correct PROCEED=0, wrong PROCEED=100, REQUEST_EVIDENCE=10, HUMAN_REVIEW=30
+2026-09-26 00:27:43 | INFO     | Expected cost of PROCEEDING NOW = 78.9474 synthetic experimental units
+2026-09-26 00:27:43 | INFO     | Experiment finished. Log saved to: d:\Ayush Singh course\Weekly deliverables\Week 1\experiment.log
+2026-09-26 00:30:53 | INFO     | =======================================================
+2026-09-26 00:30:53 | INFO     | Experiment started: Case 1 - Loan Agent
+2026-09-26 00:30:53 | INFO     | =======================================================
+2026-09-26 00:30:53 | DEBUG    | bayesian_update() called
+2026-09-26 00:30:53 | DEBUG    |   Priors      : {'legitimate': 0.5, 'concerning': 0.5}
+2026-09-26 00:30:53 | DEBUG    |   Likelihoods : {'legitimate': 0.2, 'concerning': 0.75}
+2026-09-26 00:30:53 | DEBUG    |   Joint probs : {'legitimate': 0.1, 'concerning': 0.375}
+2026-09-26 00:30:53 | DEBUG    |   P(evidence) normalising constant = 0.475000
+2026-09-26 00:30:53 | DEBUG    |   Posteriors  : {'legitimate': 0.210526, 'concerning': 0.789474}
+2026-09-26 00:30:53 | INFO     | Bayesian update complete -> P(legitimate)=0.2105, P(concerning)=0.7895
+2026-09-26 00:30:53 | INFO     | Stage 5D - synthetic outcome probabilities
+2026-09-26 00:30:53 | INFO     |   SUPPORTING_LEGITIMATE = 20.00% (SYNTHETIC)
+2026-09-26 00:30:53 | INFO     |   SUPPORTING_CONCERNING = 60.00% (SYNTHETIC)
+2026-09-26 00:30:53 | INFO     |   UNCLEAR_CONFLICTING = 20.00% (SYNTHETIC)
+2026-09-26 00:30:53 | INFO     |   Total = 100.00%
+2026-09-26 00:30:53 | INFO     |   These are synthetic assumptions for the experiment, not real banking statistics.
+2026-09-26 00:30:53 | INFO     | Stage 5C - possible evidence outcomes (synthetic categories)
+2026-09-26 00:30:53 | INFO     |   Outcome 1 - SUPPORTING_LEGITIMATE
+2026-09-26 00:30:53 | INFO     |     Description: The historical statements show a pattern that is more compatible with the legitimate state.
+2026-09-26 00:30:53 | INFO     |     Outcome probability: 20.00% (SYNTHETIC)
+2026-09-26 00:30:53 | INFO     |   Outcome 2 - SUPPORTING_CONCERNING
+2026-09-26 00:30:53 | INFO     |     Description: The historical statements show a pattern that is more compatible with the concerning state.
+2026-09-26 00:30:53 | INFO     |     Outcome probability: 60.00% (SYNTHETIC)
+2026-09-26 00:30:53 | INFO     |   Outcome 3 - UNCLEAR_CONFLICTING
+2026-09-26 00:30:53 | INFO     |     Description: The additional evidence is ambiguous, contradictory, incomplete, or otherwise does not meaningfully resolve the uncertainty.
+2026-09-26 00:30:53 | INFO     |     Outcome probability: 20.00% (SYNTHETIC)
+2026-09-26 00:30:53 | INFO     | Stage 5B - expected cost of acting now (synthetic experimental units)
+2026-09-26 00:30:53 | INFO     |   P(legitimate) = 0.210526; P(concerning) = 0.789474
+2026-09-26 00:30:53 | INFO     |   Cost if legitimate and PROCEED = 0; cost if concerning and PROCEED = 100
+2026-09-26 00:30:53 | INFO     |   Expected cost of PROCEEDING NOW = 78.9474
+2026-09-26 00:30:53 | DEBUG    | policy_1_information_seeking() called
+2026-09-26 00:30:53 | DEBUG    |   P(concerning)=0.7895  useful_evidence_available=True
+2026-09-26 00:30:53 | INFO     | Policy Rule 2 matched -> action: REQUEST_EVIDENCE  (P(concerning)=0.7895, evidence available)
+2026-09-26 00:30:53 | DEBUG    | bayesian_update() called
+2026-09-26 00:30:53 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:30:53 | DEBUG    |   Likelihoods : {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:30:53 | DEBUG    |   Joint probs : {'legitimate': 0.126316, 'concerning': 0.631579}
+2026-09-26 00:30:53 | DEBUG    |   P(evidence) normalising constant = 0.757895
+2026-09-26 00:30:53 | DEBUG    |   Posteriors  : {'legitimate': 0.166667, 'concerning': 0.833333}
+2026-09-26 00:30:53 | INFO     | Bayesian update complete -> P(legitimate)=0.1667, P(concerning)=0.8333
+2026-09-26 00:30:53 | DEBUG    | bayesian_update() called
+2026-09-26 00:30:53 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:30:53 | DEBUG    |   Likelihoods : {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:30:53 | DEBUG    |   Joint probs : {'legitimate': 0.126316, 'concerning': 0.631579}
+2026-09-26 00:30:53 | DEBUG    |   P(evidence) normalising constant = 0.757895
+2026-09-26 00:30:53 | DEBUG    |   Posteriors  : {'legitimate': 0.166667, 'concerning': 0.833333}
+2026-09-26 00:30:53 | INFO     | Bayesian update complete -> P(legitimate)=0.1667, P(concerning)=0.8333
+2026-09-26 00:30:53 | DEBUG    | bayesian_update() called
+2026-09-26 00:30:53 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:30:53 | DEBUG    |   Likelihoods : {'legitimate': 0.2, 'concerning': 0.8}
+2026-09-26 00:30:53 | DEBUG    |   Joint probs : {'legitimate': 0.042105, 'concerning': 0.631579}
+2026-09-26 00:30:53 | DEBUG    |   P(evidence) normalising constant = 0.673684
+2026-09-26 00:30:53 | DEBUG    |   Posteriors  : {'legitimate': 0.0625, 'concerning': 0.9375}
+2026-09-26 00:30:53 | INFO     | Bayesian update complete -> P(legitimate)=0.0625, P(concerning)=0.9375
+2026-09-26 00:30:53 | DEBUG    | bayesian_update() called
+2026-09-26 00:30:53 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:30:53 | DEBUG    |   Likelihoods : {'legitimate': 0.5, 'concerning': 0.5}
+2026-09-26 00:30:53 | DEBUG    |   Joint probs : {'legitimate': 0.105263, 'concerning': 0.394737}
+2026-09-26 00:30:53 | DEBUG    |   P(evidence) normalising constant = 0.500000
+2026-09-26 00:30:53 | DEBUG    |   Posteriors  : {'legitimate': 0.210526, 'concerning': 0.789474}
+2026-09-26 00:30:53 | INFO     | Bayesian update complete -> P(legitimate)=0.2105, P(concerning)=0.7895
+2026-09-26 00:30:53 | INFO     | Stage 6 - cost-aware policy action costs (SYNTHETIC)
+2026-09-26 00:30:53 | INFO     |   Expected PROCEED cost = 78.9474
+2026-09-26 00:30:53 | INFO     |   Expected REQUEST_EVIDENCE cost = 40.0000
+2026-09-26 00:30:53 | INFO     |   HUMAN_REVIEW cost = 30.0000
+2026-09-26 00:30:53 | INFO     |   Selected cost-aware action = HUMAN_REVIEW (cost 30.0000)
+2026-09-26 00:30:53 | INFO     | Stage 4 - second Bayesian update after requesting evidence
+2026-09-26 00:30:53 | INFO     | Previous posterior / new prior: {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:30:53 | INFO     | New evidence: Previous 3-4 months show the same unusual transaction pattern consistently.
+2026-09-26 00:30:53 | INFO     | New evidence likelihoods (SYNTHETIC): {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:30:53 | INFO     | Second posterior: {'legitimate': 0.16666666666666663, 'concerning': 0.8333333333333333}
+2026-09-26 00:30:53 | INFO     | Updated P(legitimate | all evidence) = 0.1667
+2026-09-26 00:30:53 | INFO     | Updated P(concerning | all evidence) = 0.8333
+2026-09-26 00:30:53 | INFO     | Stage 5F - outcome-to-posterior scenarios
+2026-09-26 00:30:53 | INFO     |   SUPPORTING_LEGITIMATE: outcome probability=20.00%, synthetic likelihoods={'legitimate': 0.6, 'concerning': 0.8}, posterior={'legitimate': 0.16666666666666663, 'concerning': 0.8333333333333333}
+2026-09-26 00:30:53 | INFO     |   SUPPORTING_CONCERNING: outcome probability=60.00%, synthetic likelihoods={'legitimate': 0.2, 'concerning': 0.8}, posterior={'legitimate': 0.0625, 'concerning': 0.9375}
+2026-09-26 00:30:53 | INFO     |   UNCLEAR_CONFLICTING: outcome probability=20.00%, synthetic likelihoods={'legitimate': 0.5, 'concerning': 0.5}, posterior={'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:30:53 | INFO     | Stage 5G downstream actions (synthetic expected costs)
+2026-09-26 00:30:53 | INFO     |   SUPPORTING_LEGITIMATE: PROCEED cost=83.3333, HUMAN_REVIEW cost=30.0000, selected=HUMAN_REVIEW at 30.0000
+2026-09-26 00:30:53 | INFO     |   SUPPORTING_CONCERNING: PROCEED cost=93.7500, HUMAN_REVIEW cost=30.0000, selected=HUMAN_REVIEW at 30.0000
+2026-09-26 00:30:53 | INFO     |   UNCLEAR_CONFLICTING: PROCEED cost=78.9474, HUMAN_REVIEW cost=30.0000, selected=HUMAN_REVIEW at 30.0000
+2026-09-26 00:30:53 | INFO     | Stage 5H expected REQUEST_EVIDENCE cost = 40.0000 (synthetic experimental units)
+2026-09-26 00:30:53 | INFO     | Stage 5H expected benefit vs PROCEEDING NOW = 38.9474 (synthetic experimental units)
+2026-09-26 00:30:53 | INFO     | Stage 6 cost-aware action selected = HUMAN_REVIEW
+2026-09-26 00:30:53 | DEBUG    | Inputs used  -> priors={'legitimate': 0.5, 'concerning': 0.5}, likelihoods={'legitimate': 0.2, 'concerning': 0.75}, evidence_available=True
+2026-09-26 00:30:53 | DEBUG    | request_cost = 10 (SYNTHETIC experimental unit)
+2026-09-26 00:30:53 | INFO     | Selected action: REQUEST_EVIDENCE
+2026-09-26 00:30:53 | INFO     | request_cost introduced: 10 experimental units (Stage 3 parameter)
+2026-09-26 00:30:53 | INFO     | Stage 5A synthetic decision costs (experimental units): correct PROCEED=0, wrong PROCEED=100, REQUEST_EVIDENCE=10, HUMAN_REVIEW=30
+2026-09-26 00:30:53 | INFO     | Expected cost of PROCEEDING NOW = 78.9474 synthetic experimental units
+2026-09-26 00:30:53 | INFO     | Experiment finished. Log saved to: D:\Ayush Singh course\Weekly deliverables\Week 1\experiment.log
+2026-09-26 00:31:28 | INFO     | =======================================================
+2026-09-26 00:31:28 | INFO     | Experiment started: Case 1 - Loan Agent
+2026-09-26 00:31:28 | INFO     | =======================================================
+2026-09-26 00:31:28 | DEBUG    | bayesian_update() called
+2026-09-26 00:31:28 | DEBUG    |   Priors      : {'legitimate': 0.5, 'concerning': 0.5}
+2026-09-26 00:31:28 | DEBUG    |   Likelihoods : {'legitimate': 0.2, 'concerning': 0.75}
+2026-09-26 00:31:28 | DEBUG    |   Joint probs : {'legitimate': 0.1, 'concerning': 0.375}
+2026-09-26 00:31:28 | DEBUG    |   P(evidence) normalising constant = 0.475000
+2026-09-26 00:31:28 | DEBUG    |   Posteriors  : {'legitimate': 0.210526, 'concerning': 0.789474}
+2026-09-26 00:31:28 | INFO     | Bayesian update complete -> P(legitimate)=0.2105, P(concerning)=0.7895
+2026-09-26 00:31:28 | INFO     | Stage 5D - synthetic outcome probabilities
+2026-09-26 00:31:28 | INFO     |   SUPPORTING_LEGITIMATE = 20.00% (SYNTHETIC)
+2026-09-26 00:31:28 | INFO     |   SUPPORTING_CONCERNING = 60.00% (SYNTHETIC)
+2026-09-26 00:31:28 | INFO     |   UNCLEAR_CONFLICTING = 20.00% (SYNTHETIC)
+2026-09-26 00:31:28 | INFO     |   Total = 100.00%
+2026-09-26 00:31:28 | INFO     |   These are synthetic assumptions for the experiment, not real banking statistics.
+2026-09-26 00:31:28 | INFO     | Stage 5C - possible evidence outcomes (synthetic categories)
+2026-09-26 00:31:28 | INFO     |   Outcome 1 - SUPPORTING_LEGITIMATE
+2026-09-26 00:31:28 | INFO     |     Description: The historical statements show a pattern that is more compatible with the legitimate state.
+2026-09-26 00:31:28 | INFO     |     Outcome probability: 20.00% (SYNTHETIC)
+2026-09-26 00:31:28 | INFO     |   Outcome 2 - SUPPORTING_CONCERNING
+2026-09-26 00:31:28 | INFO     |     Description: The historical statements show a pattern that is more compatible with the concerning state.
+2026-09-26 00:31:28 | INFO     |     Outcome probability: 60.00% (SYNTHETIC)
+2026-09-26 00:31:28 | INFO     |   Outcome 3 - UNCLEAR_CONFLICTING
+2026-09-26 00:31:28 | INFO     |     Description: The additional evidence is ambiguous, contradictory, incomplete, or otherwise does not meaningfully resolve the uncertainty.
+2026-09-26 00:31:28 | INFO     |     Outcome probability: 20.00% (SYNTHETIC)
+2026-09-26 00:31:28 | INFO     | Stage 5B - expected cost of acting now (synthetic experimental units)
+2026-09-26 00:31:28 | INFO     |   P(legitimate) = 0.210526; P(concerning) = 0.789474
+2026-09-26 00:31:28 | INFO     |   Cost if legitimate and PROCEED = 0; cost if concerning and PROCEED = 100
+2026-09-26 00:31:28 | INFO     |   Expected cost of PROCEEDING NOW = 78.9474
+2026-09-26 00:31:28 | DEBUG    | policy_1_information_seeking() called
+2026-09-26 00:31:28 | DEBUG    |   P(concerning)=0.7895  useful_evidence_available=True
+2026-09-26 00:31:28 | INFO     | Policy Rule 2 matched -> action: REQUEST_EVIDENCE  (P(concerning)=0.7895, evidence available)
+2026-09-26 00:31:28 | DEBUG    | bayesian_update() called
+2026-09-26 00:31:28 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:31:28 | DEBUG    |   Likelihoods : {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:31:28 | DEBUG    |   Joint probs : {'legitimate': 0.126316, 'concerning': 0.631579}
+2026-09-26 00:31:28 | DEBUG    |   P(evidence) normalising constant = 0.757895
+2026-09-26 00:31:28 | DEBUG    |   Posteriors  : {'legitimate': 0.166667, 'concerning': 0.833333}
+2026-09-26 00:31:28 | INFO     | Bayesian update complete -> P(legitimate)=0.1667, P(concerning)=0.8333
+2026-09-26 00:31:28 | DEBUG    | bayesian_update() called
+2026-09-26 00:31:28 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:31:28 | DEBUG    |   Likelihoods : {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:31:28 | DEBUG    |   Joint probs : {'legitimate': 0.126316, 'concerning': 0.631579}
+2026-09-26 00:31:28 | DEBUG    |   P(evidence) normalising constant = 0.757895
+2026-09-26 00:31:28 | DEBUG    |   Posteriors  : {'legitimate': 0.166667, 'concerning': 0.833333}
+2026-09-26 00:31:28 | INFO     | Bayesian update complete -> P(legitimate)=0.1667, P(concerning)=0.8333
+2026-09-26 00:31:28 | DEBUG    | bayesian_update() called
+2026-09-26 00:31:28 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:31:28 | DEBUG    |   Likelihoods : {'legitimate': 0.2, 'concerning': 0.8}
+2026-09-26 00:31:28 | DEBUG    |   Joint probs : {'legitimate': 0.042105, 'concerning': 0.631579}
+2026-09-26 00:31:28 | DEBUG    |   P(evidence) normalising constant = 0.673684
+2026-09-26 00:31:28 | DEBUG    |   Posteriors  : {'legitimate': 0.0625, 'concerning': 0.9375}
+2026-09-26 00:31:28 | INFO     | Bayesian update complete -> P(legitimate)=0.0625, P(concerning)=0.9375
+2026-09-26 00:31:28 | DEBUG    | bayesian_update() called
+2026-09-26 00:31:28 | DEBUG    |   Priors      : {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:31:28 | DEBUG    |   Likelihoods : {'legitimate': 0.5, 'concerning': 0.5}
+2026-09-26 00:31:28 | DEBUG    |   Joint probs : {'legitimate': 0.105263, 'concerning': 0.394737}
+2026-09-26 00:31:28 | DEBUG    |   P(evidence) normalising constant = 0.500000
+2026-09-26 00:31:28 | DEBUG    |   Posteriors  : {'legitimate': 0.210526, 'concerning': 0.789474}
+2026-09-26 00:31:28 | INFO     | Bayesian update complete -> P(legitimate)=0.2105, P(concerning)=0.7895
+2026-09-26 00:31:28 | INFO     | Stage 6 - cost-aware policy action costs (SYNTHETIC)
+2026-09-26 00:31:28 | INFO     |   Expected PROCEED cost = 78.9474
+2026-09-26 00:31:28 | INFO     |   Expected REQUEST_EVIDENCE cost = 40.0000
+2026-09-26 00:31:28 | INFO     |   HUMAN_REVIEW cost = 30.0000
+2026-09-26 00:31:28 | INFO     |   Selected cost-aware action = HUMAN_REVIEW (cost 30.0000)
+2026-09-26 00:31:28 | INFO     | Stage 4 - second Bayesian update after requesting evidence
+2026-09-26 00:31:28 | INFO     | Previous posterior / new prior: {'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:31:28 | INFO     | New evidence: Previous 3-4 months show the same unusual transaction pattern consistently.
+2026-09-26 00:31:28 | INFO     | New evidence likelihoods (SYNTHETIC): {'legitimate': 0.6, 'concerning': 0.8}
+2026-09-26 00:31:28 | INFO     | Second posterior: {'legitimate': 0.16666666666666663, 'concerning': 0.8333333333333333}
+2026-09-26 00:31:28 | INFO     | Updated P(legitimate | all evidence) = 0.1667
+2026-09-26 00:31:28 | INFO     | Updated P(concerning | all evidence) = 0.8333
+2026-09-26 00:31:28 | INFO     | Stage 5F - outcome-to-posterior scenarios
+2026-09-26 00:31:28 | INFO     |   SUPPORTING_LEGITIMATE: outcome probability=20.00%, synthetic likelihoods={'legitimate': 0.6, 'concerning': 0.8}, posterior={'legitimate': 0.16666666666666663, 'concerning': 0.8333333333333333}
+2026-09-26 00:31:28 | INFO     |   SUPPORTING_CONCERNING: outcome probability=60.00%, synthetic likelihoods={'legitimate': 0.2, 'concerning': 0.8}, posterior={'legitimate': 0.0625, 'concerning': 0.9375}
+2026-09-26 00:31:28 | INFO     |   UNCLEAR_CONFLICTING: outcome probability=20.00%, synthetic likelihoods={'legitimate': 0.5, 'concerning': 0.5}, posterior={'legitimate': 0.2105263157894737, 'concerning': 0.7894736842105263}
+2026-09-26 00:31:28 | INFO     | Stage 5G downstream actions (synthetic expected costs)
+2026-09-26 00:31:28 | INFO     |   SUPPORTING_LEGITIMATE: PROCEED cost=83.3333, HUMAN_REVIEW cost=30.0000, selected=HUMAN_REVIEW at 30.0000
+2026-09-26 00:31:28 | INFO     |   SUPPORTING_CONCERNING: PROCEED cost=93.7500, HUMAN_REVIEW cost=30.0000, selected=HUMAN_REVIEW at 30.0000
+2026-09-26 00:31:28 | INFO     |   UNCLEAR_CONFLICTING: PROCEED cost=78.9474, HUMAN_REVIEW cost=30.0000, selected=HUMAN_REVIEW at 30.0000
+2026-09-26 00:31:28 | INFO     | Stage 5H expected REQUEST_EVIDENCE cost = 40.0000 (synthetic experimental units)
+2026-09-26 00:31:28 | INFO     | Stage 5H expected benefit vs PROCEEDING NOW = 38.9474 (synthetic experimental units)
+2026-09-26 00:31:28 | INFO     | Stage 6 cost-aware action selected = HUMAN_REVIEW
+2026-09-26 00:31:28 | DEBUG    | Inputs used  -> priors={'legitimate': 0.5, 'concerning': 0.5}, likelihoods={'legitimate': 0.2, 'concerning': 0.75}, evidence_available=True
+2026-09-26 00:31:28 | DEBUG    | request_cost = 10 (SYNTHETIC experimental unit)
+2026-09-26 00:31:28 | INFO     | Selected action: REQUEST_EVIDENCE
+2026-09-26 00:31:28 | INFO     | request_cost introduced: 10 experimental units (Stage 3 parameter)
+2026-09-26 00:31:28 | INFO     | Stage 5A synthetic decision costs (experimental units): correct PROCEED=0, wrong PROCEED=100, REQUEST_EVIDENCE=10, HUMAN_REVIEW=30
+2026-09-26 00:31:28 | INFO     | Expected cost of PROCEEDING NOW = 78.9474 synthetic experimental units
+2026-09-26 00:31:28 | INFO     | Experiment finished. Log saved to: d:\Ayush Singh course\Weekly deliverables\Week 1\experiment.log

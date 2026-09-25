@@ -135,7 +135,7 @@ likelihoods = {
 #   • any validated decision thresholds
 # Those will be added in the next stage.
 
-def action_policy(posteriors: dict, useful_evidence_available: bool) -> str:
+def policy_1_information_seeking(posteriors: dict, useful_evidence_available: bool) -> str:
     """
     A simple, temporary policy that maps a posterior + evidence availability
     to one of three actions.
@@ -158,7 +158,7 @@ def action_policy(posteriors: dict, useful_evidence_available: bool) -> str:
     cost analysis in the next stage — we are not inventing them yet.
     """
 
-    logger.debug("action_policy() called")
+    logger.debug("policy_1_information_seeking() called")
     logger.debug("  P(concerning)=%s  useful_evidence_available=%s",
                  round(posteriors["concerning"], 4), useful_evidence_available)
 
@@ -184,6 +184,46 @@ def action_policy(posteriors: dict, useful_evidence_available: bool) -> str:
     logger.info("Policy Rule 3 matched -> action: HUMAN_REVIEW  "
                 "(P(concerning)=%.4f, no evidence available)", p_concerning)
     return "HUMAN_REVIEW"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# STAGE 6A — GENERAL COST-AWARE POLICY
+# ─────────────────────────────────────────────────────────────────────────────
+def cost_aware_action_policy(
+    posterior: dict,
+    useful_evidence_available: bool,
+    expected_request_cost=None,
+) -> str:
+    """Choose the available action with the lowest expected synthetic cost."""
+    expected_proceed_cost = posterior["concerning"] * wrong_proceed_cost
+    costs = {
+        "PROCEED": expected_proceed_cost,
+        "HUMAN_REVIEW": human_review_cost,
+    }
+
+    if useful_evidence_available:
+        if expected_request_cost is None:
+            raise ValueError(
+                "expected_request_cost is required when useful evidence is available"
+            )
+        costs["REQUEST_EVIDENCE"] = expected_request_cost
+
+    logger.info("Stage 6 - cost-aware policy action costs (SYNTHETIC)")
+    logger.info("  Expected PROCEED cost = %.4f", expected_proceed_cost)
+    if useful_evidence_available:
+        logger.info("  Expected REQUEST_EVIDENCE cost = %.4f", expected_request_cost)
+    else:
+        logger.info("  REQUEST_EVIDENCE unavailable (no useful evidence)")
+    logger.info("  HUMAN_REVIEW cost = %.4f", human_review_cost)
+
+    selected_action = min(costs, key=costs.get)
+    logger.info("  Selected cost-aware action = %s (cost %.4f)",
+                selected_action, costs[selected_action])
+    return selected_action
+
+
+# Policy 2 name used for later policy comparisons.
+policy_2_cost_aware = cost_aware_action_policy
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -262,7 +302,8 @@ logger.info("Stage 5C - possible evidence outcomes (synthetic categories)")
 for index, outcome in enumerate(possible_evidence_outcomes, start=1):
     logger.info("  Outcome %s - %s", index, outcome["name"])
     logger.info("    Description: %s", outcome["description"])
-    logger.info("    Probability: NOT DEFINED YET")
+    logger.info("    Outcome probability: %.2f%% (SYNTHETIC)",
+                outcome_probabilities[outcome["name"]] * 100)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -282,7 +323,7 @@ logger.info("  Cost if legitimate and PROCEED = %s; cost if concerning and PROCE
             correct_proceed_cost, wrong_proceed_cost)
 logger.info("  Expected cost of PROCEEDING NOW = %.4f", expected_cost_proceed_now)
 
-action = action_policy(posteriors, useful_evidence_available)
+action = policy_1_information_seeking(posteriors, useful_evidence_available)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -304,6 +345,72 @@ new_evidence_likelihoods = {
 new_priors = posteriors
 second_posteriors = bayesian_update(new_priors, new_evidence_likelihoods)
 
+# ─────────────────────────────────────────────────────────────────────────────
+# STAGE 5F — COMPLETE SYNTHETIC OUTCOME LIKELIHOOD MODELS
+# ─────────────────────────────────────────────────────────────────────────────
+# Synthetic experimental assumptions only; these are NOT banking statistics.
+outcome_likelihoods = {
+    "SUPPORTING_LEGITIMATE": {
+        "legitimate": 0.60, "concerning": 0.80,
+    },
+    "SUPPORTING_CONCERNING": {
+        "legitimate": 0.20, "concerning": 0.80,
+    },
+    "UNCLEAR_CONFLICTING": {
+        "legitimate": 0.50, "concerning": 0.50,
+    },
+}
+
+scenario_posteriors = {
+    outcome_name: bayesian_update(new_priors, likelihoods_for_outcome)
+    for outcome_name, likelihoods_for_outcome in outcome_likelihoods.items()
+}
+for outcome_name, outcome_posterior in scenario_posteriors.items():
+    if abs(sum(outcome_posterior.values()) - 1.0) > 1e-9:
+        raise ValueError(f"Posterior for {outcome_name} does not sum to approximately 1.0")
+
+# ─────────────────────────────────────────────────────────────────────────────
+# STAGE 5G — CHOOSE THE BEST DOWNSTREAM ACTION AFTER EACH OUTCOME
+# ─────────────────────────────────────────────────────────────────────────────
+# Evaluate PROCEED and HUMAN_REVIEW only. Evidence gathering is complete.
+downstream_decisions = {}
+for outcome_name, outcome_posterior in scenario_posteriors.items():
+    proceed_cost = outcome_posterior["concerning"] * wrong_proceed_cost
+    review_cost = human_review_cost
+    if proceed_cost < review_cost:
+        selected_downstream_action = "PROCEED"
+        selected_downstream_cost = proceed_cost
+    else:
+        selected_downstream_action = "HUMAN_REVIEW"
+        selected_downstream_cost = review_cost
+
+    downstream_decisions[outcome_name] = {
+        "proceed_cost": proceed_cost,
+        "human_review_cost": review_cost,
+        "selected_action": selected_downstream_action,
+        "selected_cost": selected_downstream_cost,
+    }
+
+# ─────────────────────────────────────────────────────────────────────────────
+# STAGE 5H — EXPECTED COST OF REQUESTING EVIDENCE
+# ─────────────────────────────────────────────────────────────────────────────
+# Cost-benefit values are experimental only, based entirely on synthetic inputs.
+expected_cost_request_evidence = request_cost + sum(
+    outcome_probabilities[outcome_name]
+    * downstream_decisions[outcome_name]["selected_cost"]
+    for outcome_name in outcome_probabilities
+)
+requesting_evidence_expected_benefit = (
+    expected_cost_proceed_now - expected_cost_request_evidence
+)
+
+# Apply Policy 2 after all expected costs have been computed.
+cost_aware_action = policy_2_cost_aware(
+    posteriors,
+    useful_evidence_available,
+    expected_request_cost=expected_cost_request_evidence,
+)
+
 logger.info("Stage 4 - second Bayesian update after requesting evidence")
 logger.info("Previous posterior / new prior: %s", new_priors)
 logger.info("New evidence: %s", new_evidence)
@@ -313,6 +420,23 @@ logger.info("Updated P(legitimate | all evidence) = %.4f",
             second_posteriors["legitimate"])
 logger.info("Updated P(concerning | all evidence) = %.4f",
             second_posteriors["concerning"])
+logger.info("Stage 5F - outcome-to-posterior scenarios")
+for outcome_name in outcome_probabilities:
+    logger.info("  %s: outcome probability=%.2f%%, synthetic likelihoods=%s, posterior=%s",
+                outcome_name, outcome_probabilities[outcome_name] * 100,
+                outcome_likelihoods[outcome_name], scenario_posteriors[outcome_name])
+logger.info("Stage 5G downstream actions (synthetic expected costs)")
+for outcome_name, decision in downstream_decisions.items():
+    logger.info("  %s: PROCEED cost=%.4f, HUMAN_REVIEW cost=%.4f, "
+                "selected=%s at %.4f",
+                outcome_name, decision["proceed_cost"],
+                decision["human_review_cost"], decision["selected_action"],
+                decision["selected_cost"])
+logger.info("Stage 5H expected REQUEST_EVIDENCE cost = %.4f "
+            "(synthetic experimental units)", expected_cost_request_evidence)
+logger.info("Stage 5H expected benefit vs PROCEEDING NOW = %.4f "
+            "(synthetic experimental units)", requesting_evidence_expected_benefit)
+logger.info("Stage 6 cost-aware action selected = %s", cost_aware_action)
 
 logger.debug("Inputs used  -> priors=%s, likelihoods=%s, evidence_available=%s",
              priors, likelihoods, useful_evidence_available)
@@ -417,7 +541,7 @@ print("=" * 55)
 for index, outcome in enumerate(possible_evidence_outcomes, start=1):
     print(f"\nOutcome {index} - {outcome['name']}")
     print(f"Description: {outcome['description']}")
-    print("Probability: NOT DEFINED YET")
+    print(f"Probability: {outcome_probabilities[outcome['name']]:.0%} (SYNTHETIC)")
 
 print("\n" + "=" * 55)
 print("CHECKPOINT 6 - EVIDENCE OUTCOME SPACE")
@@ -443,6 +567,101 @@ print("60% -> supporting concerning")
 print("20% -> unclear/conflicting")
 print("\nThese are synthetic assumptions for the experiment.")
 
+print("\n" + "=" * 55)
+print("STAGE 5E - DECISION AFTER EACH EVIDENCE OUTCOME")
+print("=" * 55)
+print("Scenario posteriors use the synthetic likelihood models defined in Stage 5F.")
+
+print("\n" + "=" * 55)
+print("CHECKPOINT 8 - OUTCOME -> POSTERIOR")
+print("=" * 55)
+for outcome_name, outcome_posterior in scenario_posteriors.items():
+    print(f"\n{outcome_name} (SYNTHETIC)")
+    print(f"  Outcome probability = {outcome_probabilities[outcome_name]:.0%}")
+    print(f"  P(outcome | legitimate) = {outcome_likelihoods[outcome_name]['legitimate']:.2f}")
+    print(f"  P(outcome | concerning) = {outcome_likelihoods[outcome_name]['concerning']:.2f}")
+    print(f"  P(legitimate) = {outcome_posterior['legitimate']:.4f}")
+    print(f"  P(concerning) = {outcome_posterior['concerning']:.4f}")
+    print(f"  Posterior total = {sum(outcome_posterior.values()):.4f}")
+
+print("\n" + "=" * 55)
+print("CHECKPOINT 9 - OUTCOME -> POSTERIOR (SYNTHETIC LIKELIHOOD MODELS)")
+print("=" * 55)
+print(f"{'Outcome':<26} {'Prob.':>8} {'Like L':>9} {'Like C':>9} {'Post L':>9} {'Post C':>9}")
+for outcome_name, outcome_posterior in scenario_posteriors.items():
+    print(f"{outcome_name:<26} {outcome_probabilities[outcome_name]:>7.0%} "
+          f"{outcome_likelihoods[outcome_name]['legitimate']:>9.2f} "
+          f"{outcome_likelihoods[outcome_name]['concerning']:>9.2f} "
+          f"{outcome_posterior['legitimate']:>9.4f} "
+          f"{outcome_posterior['concerning']:>9.4f}")
+print("All likelihoods and outcome probabilities are SYNTHETIC experimental assumptions.")
+
+print("\n" + "=" * 55)
+print("STAGE 5G - DOWNSTREAM ACTION AFTER EACH OUTCOME")
+print("=" * 55)
+print("Synthetic costs; only PROCEED and HUMAN_REVIEW are evaluated here.")
+
+print("\n" + "=" * 55)
+print("CHECKPOINT 10 - BEST ACTION AFTER EACH OUTCOME")
+print("=" * 55)
+print(f"{'Outcome':<26} {'Posterior (L/C)':<25} {'PROCEED':>12} {'HUMAN_REVIEW':>14} {'Selected':>16}")
+for outcome_name, outcome_posterior in scenario_posteriors.items():
+    decision = downstream_decisions[outcome_name]
+    posterior_label = (f"{outcome_posterior['legitimate']:.4f}/"
+                       f"{outcome_posterior['concerning']:.4f}")
+    print(f"{outcome_name:<26} {posterior_label:<25} "
+          f"{decision['proceed_cost']:>12.4f} "
+          f"{decision['human_review_cost']:>14.2f} "
+          f"{decision['selected_action']:>16}")
+
+print("\n" + "=" * 55)
+print("STAGE 5H - EXPECTED COST OF REQUESTING EVIDENCE")
+print("=" * 55)
+for outcome_name in outcome_probabilities:
+    decision = downstream_decisions[outcome_name]
+    weighted_cost = outcome_probabilities[outcome_name] * decision["selected_cost"]
+    print(f"{outcome_name}: {outcome_probabilities[outcome_name]:.0%} x "
+          f"{decision['selected_cost']:.4f} = {weighted_cost:.4f}")
+print(f"Request cost = {request_cost:.4f} synthetic experimental units")
+print(f"Expected cost of REQUESTING EVIDENCE = {expected_cost_request_evidence:.4f} "
+      "synthetic experimental units")
+print(f"Expected cost of PROCEEDING NOW = {expected_cost_proceed_now:.4f} "
+      "synthetic experimental units")
+print(f"Expected benefit of requesting evidence = {requesting_evidence_expected_benefit:.4f} "
+      "synthetic experimental units")
+if expected_cost_request_evidence < expected_cost_proceed_now:
+    print("Under the CURRENT SYNTHETIC COST MODEL, requesting evidence has the lower expected cost.")
+elif expected_cost_request_evidence > expected_cost_proceed_now:
+    print("Under the CURRENT SYNTHETIC COST MODEL, proceeding now has the lower expected cost.")
+else:
+    print("Under the CURRENT SYNTHETIC COST MODEL, both choices have equal expected cost.")
+print("This is an experimental cost-benefit calculation, not a real-world banking estimate.")
+
+print("\n" + "=" * 55)
+print("STAGE 6 - COST-AWARE ACTION POLICY")
+print("=" * 55)
+print("Stage 6A: policy_2_cost_aware() compares expected costs of available actions.")
+
+print("\n" + "=" * 55)
+print("CHECKPOINT 12 - COST-AWARE POLICY")
+print("=" * 55)
+print(f"Current posterior: legitimate={posteriors['legitimate']:.4f}, "
+      f"concerning={posteriors['concerning']:.4f}")
+print(f"Expected PROCEED cost = {posteriors['concerning'] * wrong_proceed_cost:.4f}")
+print(f"Expected REQUEST_EVIDENCE cost = {expected_cost_request_evidence:.4f}")
+print(f"HUMAN_REVIEW cost = {human_review_cost:.4f}")
+print(f"Selected action = {cost_aware_action}")
+print("Reason: HUMAN_REVIEW has the lowest expected cost under the current synthetic cost model.")
+
+print("\n" + "=" * 55)
+print("STAGE 6C - POLICY INTERPRETATION")
+print("=" * 55)
+print("The agent is no longer deciding from probability alone.")
+print("It compares the expected cost of available actions.")
+print("REQUEST_EVIDENCE is useful only when its expected downstream benefit")
+print("justifies its cost.")
+print("All values and assumptions are SYNTHETIC; they do not represent real lending.")
+
 print("\n[ STAGE 5B - EXPECTED COST OF ACTING NOW ]")
 print(f"  P(legitimate) = {posteriors['legitimate']:.6f}")
 print(f"  P(concerning) = {posteriors['concerning']:.6f}")
@@ -466,7 +685,7 @@ print(f"  Updated P(concerning | all evidence) = {second_posteriors['concerning'
 
 print("\nStage 4 complete.")
 print("The second Bayesian update is now implemented.")
-print("Next stage: determine whether obtaining this evidence was worth its synthetic cost using Value of Information.")
+print("The Stage 4 update is retained as the SUPPORTING_LEGITIMATE scenario model.")
 print("\nStage 5A complete.")
 print("Decision costs are now defined.")
 print("Next: calculate the expected cost of acting now versus requesting information.")
@@ -479,6 +698,11 @@ print("Next: assign synthetic outcome probabilities and calculate the expected c
 print("\nStage 5D complete.")
 print("Outcome probabilities are now defined.")
 print("Next: calculate the decision cost associated with each outcome.")
+print("\nStage 5E complete.")
+print("Outcome probabilities and posterior calculations are now explicitly separated.")
+print("The outcome likelihood models and downstream comparisons are completed below.")
+
+print("\nStages 5F-5H complete. Next stage: convert this cost calculation into the cost-aware action policy.")
 
 print("\n" + "=" * 55)
 print("EXPERIMENT CHECKPOINT SUMMARY")
@@ -488,7 +712,25 @@ print(f"C2 First posterior: legitimate={posteriors['legitimate']:.4f}, concernin
 print(f"C3 Action: {action}")
 print(f"C4 Second posterior: legitimate={second_posteriors['legitimate']:.4f}, concerning={second_posteriors['concerning']:.4f}")
 print(f"C5 Expected cost of proceeding now: {expected_cost_proceed_now:.4f} synthetic experimental units")
+print("C6 Evidence outcome space: SUPPORTING_LEGITIMATE, SUPPORTING_CONCERNING, UNCLEAR_CONFLICTING")
+print("C7 Outcome probabilities: 20%, 60%, 20% (SYNTHETIC)")
+print("C8 Outcome -> posterior:")
+for outcome_name, outcome_posterior in scenario_posteriors.items():
+    print(f"   {outcome_name}: legitimate={outcome_posterior['legitimate']:.4f}, "
+          f"concerning={outcome_posterior['concerning']:.4f}")
+print("C9 Completed outcome likelihood models: all three (SYNTHETIC)")
+print("C10 Best downstream action after each outcome:")
+for outcome_name, decision in downstream_decisions.items():
+    print(f"   {outcome_name}: {decision['selected_action']}")
+print(f"C11 Expected cost of requesting evidence: {expected_cost_request_evidence:.4f} "
+      "synthetic experimental units")
+print(f"C12 Cost-aware policy: {cost_aware_action}")
 
 print(f"\n[ LOG FILE ]")
 print(f"  All runs are appended to: {LOG_FILE}")
 print("=" * 55)
+print("\nStage 6 complete.")
+print("The agent now has a cost-aware decision policy.")
+print("\nNext stage:")
+print("construct controlled cases that can expose differences between")
+print("the baseline, information-seeking policy, and cost-aware policy.")
