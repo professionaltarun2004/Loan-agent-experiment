@@ -2,15 +2,13 @@
 
 ## 1. Problem Statement
 
-A loan applicant provides a bank statement as supporting evidence. The agent observes the applicant's transaction history and patterns over time, but it cannot directly observe the actual context behind those transactions.
+The agent observes a loan applicant's bank statement and transaction patterns over time. It must select `PROCEED`, `REQUEST_EVIDENCE`, or `HUMAN_REVIEW` because the actual context behind those transaction patterns is not known.
 
-The agent must decide whether the available evidence is sufficient to accept the case, whether additional evidence should be requested, or whether the case should be sent to a human when the uncertainty cannot be resolved sufficiently.
-
-The agent should be able to update its assessment when new evidence is received rather than making a decision from a single observation.
+The agent should update its assessment when new evidence is received rather than making a decision from a single observation. This is a narrow evidence-handling problem, not a general loan approval or rejection system.
 
 ## 2. Project Objective
 
-To design and test an agent that can make decisions when the available loan-document evidence is incomplete. The agent should determine when the current evidence is sufficient, when it is worth requesting additional evidence, and when the remaining uncertainty should be handled by a human.
+To design and test an agent that can make decisions when the available loan-document evidence is incomplete: determine when current evidence is sufficient, whether additional evidence is worth requesting, and when remaining uncertainty should be handled by a human.
 
 ## 3. Technical Terms
 
@@ -36,7 +34,7 @@ The agent can defer a case to a human when the available evidence remains insuff
 
 ### 3.6 POMDP (Partially Observable Markov Decision Process)
 
-A possible formal framework for modelling sequential decision-making when the underlying state is not directly observable. It is relevant to investigate because our agent observes evidence, maintains uncertainty, takes actions, and can receive new evidence.
+A possible formal framework for modelling sequential decision-making when the underlying state is not directly observable. It is relevant to investigate because the agent observes evidence, maintains uncertainty, takes actions, and can receive new evidence. The current implementation is a small experimental decision system, not a full POMDP implementation; it uses belief updating and synthetic expected-cost comparisons to study whether more information or human review is worth pursuing.
 
 ### 3.7 Value of Information
 
@@ -62,7 +60,7 @@ A concept for evaluating whether obtaining additional information is worth its c
 
 ### r/mlscaling
 
-Status: Posted and awaiting responses.
+Status recorded in the initial research file: posted and awaiting responses. This is the only community recorded here; the five-to-ten-community verification requirement remains incomplete. The current record does not establish that this community was independently verified as active and relevant.
 
 My question:
 I am building a loan document agent that observes bank statements
@@ -74,15 +72,33 @@ additional context a human could assess that the agent cannot.
 
 ## 6. Relevant X Accounts
 
-To be researched and verified.
+Not yet verified in the current research record. This Section 4 research-file requirement remains incomplete.
 
 ## 7. Papers / Articles / Repositories / Datasets
 
-To be researched and verified.
+Not yet verified in the current research record. No verified papers, articles,
+repositories, or datasets are recorded in the current project materials, so the
+five-reference requirement remains incomplete. No references are added here
+without evidence that they were read and checked.
 
 ## 8. Questions I Want to Answer
 
-To be developed from the research.
+These questions evolved from the initial research and subsequent synthetic
+experimentation. They are not answered by real-world evidence:
+
+1. How should an agent represent uncertainty when the underlying state cannot
+   be directly observed?
+2. When is additional evidence worth requesting?
+3. Does evidence availability alone justify requesting evidence?
+4. How does evidence cost affect the decision to request information?
+5. When should an agent defer to a human?
+6. How does the cost of an incorrect automated decision affect the selected
+   action?
+7. How sensitive is a threshold-based policy to its chosen threshold?
+8. What happens when prior or likelihood assumptions are wrong?
+9. How does a cost-aware policy distinguish among `PROCEED`,
+   `REQUEST_EVIDENCE`, and `HUMAN_REVIEW`?
+10. What limitations remain when the belief model is misspecified?
 
 ## 9. AI Prompts Used
 
@@ -107,7 +123,17 @@ Help me prepare my research.
 
 Do not present uncertain information as fact.
 
-### Initial Design Insight
+### Experiment-development prompts
+
+Later prompts were used to implement and inspect sequential Bayesian updating,
+synthetic decision costs, three competing policies, controlled case matrices,
+policy evaluation, and deliberate break tests. They asked that synthetic
+assumptions be labeled, hidden ground truth be kept out of policy inputs, and
+the experiment avoid unsupported real-world claims. These prompts followed
+the initial research and hypothesis; they were not part of the initial
+research stage.
+
+## 10. Initial Design Insight
 
 The agent should not send every uncertain case directly to a human.
 When uncertainty exists, it should first consider whether a specific
@@ -120,13 +146,17 @@ to a human.
 
 This is an initial design hypothesis that will need to be tested.
 
-## 10. Important AI Errors
+### Important AI Errors
 
-To be recorded as the research is verified.
+One issue identified during the initial research/design work: some AI
+responses expanded the problem into full loan approval/rejection. The selected
+Week 1 problem is narrower: `PROCEED`, `REQUEST_EVIDENCE`, or `HUMAN_REVIEW`.
+The experiment kept this action space.
 
-One issue already identified: some AI responses expanded the problem into full loan approval/rejection. The selected Week 1 problem is narrower: accept the available evidence, request additional evidence, or send the case to a human.
+The experiment-development prompts also guarded against treating synthetic
+probabilities and costs as real banking evidence.
 
-## Initial Agent Policy Hypothesis
+### Initial Agent Policy Hypothesis
 
 The agent should not make a decision based only on which outcome is
 most likely.
@@ -149,3 +179,51 @@ automated decision-making inappropriate.
 
 This is an initial policy hypothesis and will be tested using synthetic
 cases before being treated as a final design.
+
+## 11. Research-to-Experiment Bridge
+
+The initial research framed the problem as partial observability: the agent
+sees transaction patterns but not their underlying context. That led to the
+hidden-state and belief-state concepts, then to sequential Bayesian updates,
+active evidence gathering, human deferral, and synthetic information-cost
+comparisons. The project compared three policies in controlled synthetic
+cases and deliberate break tests.
+
+The initial design insight and policy idea above were hypotheses. They were
+subsequently tested; they were not findings known at the start.
+
+## 12. What the Experiment Added to the Research
+
+### Observed in the synthetic experiment
+
+- Policy 1 uses a fixed 30% concerning-probability threshold and does not
+  account for evidence request cost.
+- Policy 2 compares synthetic expected costs and changed actions when evidence
+  request cost or human-review cost changed in the paired tests.
+- The 29%, 30%, and 31% cases showed Policy 1 proceeding below its threshold
+  and requesting evidence at and above the threshold.
+- Break tests demonstrated sensitivity to prior and likelihood assumptions.
+- Cost-aware action selection cannot correct a badly specified belief model.
+
+These are observations from the constructed synthetic experiment, not
+real-world loan underwriting findings or evidence that one policy is
+generally superior. Detailed case results and the full failure analysis are
+kept in the experiment artifacts and final README rather than repeated here.
+
+### Limitations and possible follow-up
+
+The experiment used deliberately constructed cases, synthetic hidden states,
+probabilities, likelihoods, and costs. It did not use real banking data, model
+reviewer errors, or validate lending performance. Possible future research
+includes better-supported probability assumptions, broader evaluation, and a
+formal POMDP formulation if the project requires it; none of these is claimed
+as completed work.
+
+### Terminology note
+
+- **Bayesian update:** updating belief using evidence likelihoods.
+- **Value of Information:** reasoning about whether additional information is
+  worth its cost. The experiment uses a synthetic expected-cost comparison;
+  it is not a validated real-world Value-of-Information estimate.
+- **POMDP:** a possible formal framework for sequential decision-making under
+  partial observability. The current implementation is not a full POMDP.
