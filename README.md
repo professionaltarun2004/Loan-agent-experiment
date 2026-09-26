@@ -1,4 +1,4 @@
-# Week 1 Loan Agent Experiment
+# Loan Agent Experiment
 
 This is a small educational experiment about decisions under incomplete
 information. It is a synthetic demonstration, not a lending or banking system.
